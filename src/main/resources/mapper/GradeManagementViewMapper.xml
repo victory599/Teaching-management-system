@@ -4,10 +4,11 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.liu.dao.GradeManagementDao">
-    <!--学生端-->
-    <resultMap id="getCourseGradeMap" type="com.liu.views.GradeManagementView">
-        <!--select_course表信息    id是查询结果的唯一标识-->
+    <!-- 学生端 -->
+    <resultMap id="getCourseGradeMap" type="com.liu.vo.GradeManagementView">
+        <!-- select_course表信息，id是查询结果的唯一标识 -->
         <id column="semesterid" javaType="Integer" jdbcType="INTEGER" property="semesterId"></id>
+
         <result column="cno" javaType="Integer" jdbcType="INTEGER" property="cno"></result>
         <result column="sno" javaType="Integer" jdbcType="INTEGER" property="sno"></result>
         <result column="grade" javaType="String" jdbcType="VARCHAR" property="detail"></result>
@@ -27,14 +28,14 @@
 
     </resultMap>
 
-    <select id="getCourseGrade" parameterType="com.liu.views.GradeManagementView" resultMap="getCourseGradeMap">
+    <select id="getCourseGrade" parameterType="com.liu.vo.GradeManagementView" resultMap="getCourseGradeMap">
         select semester.start,semester.semester,course.cno,course.cname,course.college,
         planning.credit,select_course.totalscore,select_course.detail,scheduling.percent
         from select_course,semester,course,planning,scheduling
         <where>
             select_course.semesterid=semester.semesterid and course.cno = planning.cno
             and course.cno = select_course.cno and select_course.semesterid=semester.semesterid
-            and scheduling.cno = select_course.cno and  sno=#{sno} and totalscore is not null
+            and scheduling.cno = select_course.cno and sno=#{sno} and totalscore is not null
             <if test="start == 'all' ">
                 and semester.start in ('2016','2017','2018')
             </if>
@@ -53,7 +54,7 @@
 
 
     <!--教师端  涉及到多表-->
-    <resultMap id="teacher_getCourseGradeMap" type="com.liu.views.GradeManagementView">
+    <resultMap id="teacher_getCourseGradeMap" type="com.liu.vo.GradeManagementView">
         <!--select_course表信息    id是查询结果的唯一标识-->
         <id column="semesterid" javaType="Integer" jdbcType="INTEGER" property="semesterId"></id>
         <result column="cno" javaType="Integer" jdbcType="INTEGER" property="cno"></result>
@@ -75,7 +76,8 @@
 
     </resultMap>
 
-    <select id="getStudentsGrade" parameterType="com.liu.views.GradeManagementView" resultMap="teacher_getCourseGradeMap">
+    <select id="getStudentsGrade" parameterType="com.liu.vo.GradeManagementView"
+            resultMap="teacher_getCourseGradeMap">
         select semester.semesterid,`start`,`end`,semester.semester,course.cno,course.cname,
         course.college,sno,credit,detail,totalscore,scheduling.percent
         from select_course,semester,course,planning,scheduling
@@ -111,16 +113,17 @@
         where semesterid=#{semesterId} and sno=#{sno} and cno=#{cno}
     </update>
     <!--type domain-->
-    <select id="getCoursePercent" parameterType="com.liu.views.GradeManagementView" resultType="String">
+    <select id="getCoursePercent" parameterType="com.liu.vo.GradeManagementView" resultType="String">
         select percent from scheduling where semesterid=#{semesterId} and cno=#{cno}
     </select>
 
-    <resultMap id="CnoCname" type="com.liu.views.GradeManagementView">
+    <resultMap id="CnoCname" type="com.liu.vo.GradeManagementView">
         <id column="cno" javaType="Integer" jdbcType="INTEGER" property="cno"></id>
         <result column="cname" javaType="String" jdbcType="VARCHAR" property="cname"></result>
     </resultMap>
 
-    <select id="getCourseOfTeacher" parameterType="com.liu.views.GradeManagementView" resultType="com.liu.entity.Course">
+    <select id="getCourseOfTeacher" parameterType="com.liu.vo.GradeManagementView"
+            resultType="com.liu.entity.Course">
         select course.cno,course.cname from course,scheduling,semester
         <where>
             course.cno=scheduling.cno and scheduling.semesterid=semester.semesterid
@@ -131,5 +134,4 @@
         </where>
 
     </select>
-
 </mapper>

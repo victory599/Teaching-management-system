@@ -1,7 +1,7 @@
-package com.liu.mapperTest;
+package com.liu.daoTest;
 
 import com.liu.dao.SchedulingDao;
-import com.liu.views.MobileSchedulingView;
+import com.liu.vo.MobileSchedulingView;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,12 +12,13 @@ import java.util.List;
 
 @SpringBootTest
 @RunWith(SpringRunner.class)
-public class Test2 {
+public class SchedulingDaoTest {
     @Autowired
     SchedulingDao schedulingDao;
+
     @Test
-    public void test(){
-        List<MobileSchedulingView> coursesByTnoAndTnameAndAddress = schedulingDao.getCoursesByTnoAndTnameAndAddress(1000000, "陈雪", "图书");
-        System.out.println(coursesByTnoAndTnameAndAddress);
+    public void test() {
+        List<MobileSchedulingView> courses = schedulingDao.getCoursesByTnoAndTnameAndAddress(1000000, "陈雪", "图书");
+        System.out.println(courses);
     }
 }

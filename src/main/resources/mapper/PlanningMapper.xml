@@ -5,7 +5,7 @@
 
 <mapper namespace="com.liu.dao.PlanningDao">
 
-    <resultMap id="getWillCoursesMap" type="com.liu.views.PlanningView">
+    <resultMap id="getWillCoursesMap" type="com.liu.vo.PlanningView">
         <id  property="cno" javaType="Integer" column="cno" jdbcType="INTEGER"></id>
 
         <id  property="cname" javaType="String" column="cname" jdbcType="VARCHAR"></id>
@@ -58,6 +58,7 @@
         and
           cno=#{cno}
     </select>
+
     <select id="checkIfOpen" resultType="Boolean">
         select ifopen from planning
         where
@@ -69,6 +70,7 @@
         and
           cno=#{cno}
     </select>
+
     <select id="changeIfOpen" resultType="Boolean">
         update planning set ifopen=#{ifOpen}
         where

@@ -2,14 +2,16 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<!-- 孟庆强 -->
+
 <mapper namespace="com.liu.dao.PowerDao">
     <select id="getPower" resultType="com.liu.entity.Power">
         select * from power
     </select>
+
     <delete id="deletePower">
-        delete  from power
+        delete from power
     </delete>
+
     <update id="updatePower" parameterType="com.liu.entity.Power">
         update power
         <set>
@@ -18,7 +20,8 @@
             power.abnormal = #{abnormal}
         </set>
     </update>
+
     <insert id="insertPower" parameterType="com.liu.entity.Power">
-        insert into power values (#{selectCourse},#{score},#{abnormal})
+        insert into power values (#{selectCourse}, #{score}, #{abnormal})
     </insert>
 </mapper>

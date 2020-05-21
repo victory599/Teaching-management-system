@@ -1,4 +1,4 @@
-package com.liu.mapperTest;
+package com.liu.daoTest;
 
 import com.liu.dao.SemesterDao;
 import com.liu.entity.Semester;
@@ -9,32 +9,33 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
+
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class SemesterDaoTest {
     @Autowired
     SemesterDao semesterDao;
-//    @Autowired
-    Semester semester;
+
     @Test
     public void insertSemester() {
-        semester = new Semester();
+        Semester semester = new Semester();
         semester.setEnd("222");
         semester.setStart("222");
         semester.setSemesterId(1);
         semester.setSemester("222");
-//
+
         semesterDao.insertSemester(semester);
-//
     }
+
     @Test
-    public void getSemester(){
+    public void getSemester() {
         List<Semester> all = semesterDao.getAll();
         System.out.println(all);
 
     }
+
     @Test
-    public void getSemesterMostId(){
+    public void getSemesterMostId() {
         List<Semester> currentSemester = semesterDao.getSemesterMostId();
         System.out.println(currentSemester);
     }

@@ -3,9 +3,6 @@ package com.liu.entity;
 import lombok.Data;
 import org.apache.ibatis.type.Alias;
 
-/**
- * 课题_学生相关
- */
 @Data
 @Alias("QuestionStudentChoose")
 public class QuestionStudentChoose {

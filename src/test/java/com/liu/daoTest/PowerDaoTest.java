@@ -1,4 +1,4 @@
-package com.liu.mapperTest;
+package com.liu.daoTest;
 
 import com.liu.dao.PowerDao;
 import com.liu.entity.Power;
@@ -10,29 +10,18 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
 
-/**
- * PowerDao的测试类
- *
- * @author 孟庆强
- */
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class PowerDaoTest {
     @Autowired
     PowerDao powerDao;
 
-    /**
-     * 测试getPower
-     */
     @Test
     public void getPower() {
         List<Power> power = powerDao.getPower();
         System.out.println(power.get(0));
     }
 
-    /**
-     * 测试updatePower
-     */
     @Test
     public void updatePower() {
         Power power = new Power();
@@ -42,9 +31,6 @@ public class PowerDaoTest {
         powerDao.updatePower(power);
     }
 
-    /**
-     * 测试insertPower
-     */
     @Test
     public void insertPower() {
         Power power = new Power();
@@ -54,9 +40,6 @@ public class PowerDaoTest {
         powerDao.insertPower(power);
     }
 
-    /**
-     * 测试deletePower
-     */
     @Test
     public void deletePower() {
         powerDao.deletePower();

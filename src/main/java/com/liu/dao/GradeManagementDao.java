@@ -2,14 +2,13 @@ package com.liu.dao;
 
 import com.liu.entity.Course;
 import com.liu.entity.SelectCourse;
-import com.liu.views.GradeManagementView;
+import com.liu.vo.GradeManagementView;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 /**
- * @author  王艺琳
- * 查询成绩相关信息的数据库访问层。
+ * 查询成绩相关信息
  */
 @Repository
 public interface GradeManagementDao {
@@ -18,9 +17,8 @@ public interface GradeManagementDao {
     /**
      * 根据查询条件返回结果
      * @param grade 条件集合
-     * @return  返回查询到的结果。
+     * @return  返回查询到的结果
      */
-
     List<GradeManagementView> getCourseGrade(GradeManagementView grade);
 
     /* 教师端 */
@@ -34,23 +32,19 @@ public interface GradeManagementDao {
 
     /**
      * 修改某一个学生的成绩
-     * @return  返回是否修改成功
+     * @return  是否修改成功
      */
     Integer setStudentGradeById(SelectCourse studentGrade);
 
 
     /**
-     * wyl
      * 获取某个课程的成绩百分比
      * @return  返回成绩百分比
      */
    String getCoursePercent(GradeManagementView percent);
 
     /**
-     * wyl
      * 获取某个老师该学期所有课的cno和cname
-     * @return
      */
     List<Course> getCourseOfTeacher(GradeManagementView teachercourse);
-
 }

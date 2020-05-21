@@ -4,79 +4,48 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.liu.dao.QuestionDao">
-    <!--id对应的是dao中方法-->
-
     <update id="deleteStudentQuestion" parameterType="int">
-        update question set sno = '-1' , ischosen = '0'
-        where questionid = #{questionid}
+        update question set sno = '-1', ischosen = '0' where questionid = #{questionid}
     </update>
 
-    <select id="getAllQuestions" resultType="Question">
+    <select id="getAllQuestions" resultType="com.liu.entity.Question">
         select * from question
-
     </select>
 
-
-    <select id="getPartQuestionsByMajorid" parameterType="int"
-            resultType="QuestionStudentInquiry">
-        select question.questionid,question.topic,question.difficulty,teacher.tname,question.ischosen from
-        question join teacher on question.tno = teacher.tno
-        where
-            question.majorid = #{majorid}
-        order by
-            question.difficulty
+    <select id="getPartQuestionsByMajorid" parameterType="int" resultType="com.liu.entity.QuestionStudentInquiry">
+        select question.questionid,question.topic,question.difficulty,teacher.tname,question.ischosen from question
+        join teacher on question.tno = teacher.tno
+        where question.majorid = #{majorid}
+        order by question.difficulty
     </select>
 
-
-
-    <select id="getSingleQuestionBySno" parameterType="int" resultType="Question">
+    <select id="getSingleQuestionBySno" parameterType="int" resultType="com.liu.entity.Question">
         select * from  question where sno = #{sno}
     </select>
 
-
-
-    <select id="getQuestionsByMajorid" parameterType="int"
-            resultType="Question">
-        select * from question
-        where
-             question.majorid = #{majorid}
+    <select id="getQuestionsByMajorid" parameterType="int" resultType="com.liu.entity.Question">
+        select * from question where question.majorid = #{majorid}
     </select>
 
-    <select id="getQuestionByQustionId" parameterType="int" resultType="Question">
+    <select id="getQuestionByQustionId" parameterType="int" resultType="com.liu.entity.Question">
         select * from question where questionid = #{questionId}
     </select>
 
-    <select id="getQuestionByTno" parameterType="int" resultType="Question">
+    <select id="getQuestionByTno" parameterType="int" resultType="com.liu.entity.Question">
         select * from question where tno = #{tno}
     </select>
 
-    <insert id="addQuestion"  parameterType="Question" >
-        insert into question(
-        questionid,
-        topic,
-        content,
-        difficulty,
-        tno,
-        majorid,
-        sno,
-        ischosen
-        )values(
-        #{questionid},
-        #{topic},
-        #{content},
-        #{difficulty},
-        #{tno},
-        #{majorid},
-        #{sno},
-        #{ischosen}
-        )
+    <insert id="addQuestion"  parameterType="com.liu.entity.Question" >
+        insert into question(questionid, topic, content, difficulty, tno, majorid, sno, ischosen)
+        values( #{questionid}, #{topic}, #{content}, #{difficulty}, #{tno}, #{majorid}, #{sno}, #{ischosen})
     </insert>
 
     <delete id="deleteQuestion" parameterType="int">
       delete from question where questionid = #{questionId}
     </delete>
-    <!--多个参数包装到hashmap中，然后参数名称不要有大写，不要太长-->
-    <update id="sureQuestionStudent" parameterType="Map">
-        update question set sno=#{sno}, ischosen=true where questionid=#{id}
+
+    <!-- 多个参数包装到hashmap中，参数名称不要有大写，不要太长 -->
+    <update id="sureQuestionStudent" parameterType="java.util.Map">
+        update question set sno = #{sno}, ischosen = true where questionid = #{id}
     </update>
 </mapper>

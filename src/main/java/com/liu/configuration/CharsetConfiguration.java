@@ -11,8 +11,6 @@ import java.nio.charset.Charset;
 public class CharsetConfiguration {
     @Bean
     public HttpMessageConverter<String> responseBodyConverter() {
-        StringHttpMessageConverter converter = new StringHttpMessageConverter(
-                Charset.forName("UTF-8"));
-        return converter;
+        return new StringHttpMessageConverter(Charset.forName("UTF-8"));
     }
 }

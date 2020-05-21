@@ -7,8 +7,8 @@ import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 
 @SpringBootApplication(exclude = DataSourceAutoConfiguration.class)
 @MapperScan("com.liu.dao")
-public class SoftwareApplication {
+public class EducationApplication {
     public static void main(String[] args) {
-        SpringApplication.run(SoftwareApplication.class, args);
+        SpringApplication.run(EducationApplication.class, args);
     }
 }

@@ -11,7 +11,7 @@ import com.liu.service.SelectCourseService;
 import com.liu.service.SemesterService;
 
 import com.liu.utils.ResponseMessage;
-import com.liu.views.SelectCourseView;
+import com.liu.vo.SelectCourseView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -58,7 +58,7 @@ public class SelectCourseControllerPage {
         User user=(User) session.getAttribute("user");
         Integer sno=user.getAccount();
         Integer majorId=user.getMajorid();
-        List<Semester> semesters=semesterService.getSemesterDomain();
+        List<Semester> semesters=semesterService.getSemesterEntity();
         ArrayList<SelectCourse> selectedList=
                 (ArrayList<SelectCourse>) selectCourseService.getSelectedCourseList(sno,semesterId);
         ArrayList<SelectCourseView> courseViews=
@@ -86,7 +86,7 @@ public class SelectCourseControllerPage {
         Integer semesterId=semesterService.getCurrentSemesterId();
         ArrayList<SelectCourseView> courseTable=(ArrayList<SelectCourseView>)
                 selectCourseService.getCourseTable(semesterId,sno);
-        List<Semester> semesters=semesterService.getSemesterDomain();
+        List<Semester> semesters=semesterService.getSemesterEntity();
         Semester semester=semesterService.getCurrentSemesterInfo();
         parMap.put("coursetable",courseTable);
         parMap.put("semesterlist",semesters);
@@ -122,7 +122,7 @@ public class SelectCourseControllerPage {
      */
     @GetMapping("/coursetablemobile")
     public String coursetablemobile(Map<String, Object> parmMap){
-        List<Semester> semesters=semesterService.getSemesterDomain();
+        List<Semester> semesters=semesterService.getSemesterEntity();
         Semester semester=semesterService.getCurrentSemesterInfo();
         parmMap.put("semesterlist",semesters);
         parmMap.put("currentSemester",semester);

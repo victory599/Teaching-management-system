@@ -11,7 +11,7 @@ import com.liu.service.PowerService;
 import com.liu.service.CourseService;
 import com.liu.utils.ResponseMessage;
 
-import com.liu.views.GradeManagementView;
+import com.liu.vo.GradeManagementView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;

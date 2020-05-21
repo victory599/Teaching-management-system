@@ -1,18 +1,9 @@
-package com.liu.views;
+package com.liu.vo;
 
 import lombok.Data;
 
-/**
- * @author  高谦
- * 这里不是一个数据库的实体
- * 这是在具体的应用接口 api 中，由于多表连接查询所生成的 view
- * 这个包里面的所有类都是这个作用。
- * 这个类实现的是学生选课的view。
- */
-
 @Data
 public class SelectCourseView {
-
     //公共字段
     private Integer semesterId;
     private Integer cno;
@@ -49,6 +40,7 @@ public class SelectCourseView {
     private Integer courseType;
 
     public SelectCourseView() {}
+
     public void setCourseTime(String time){
         this.courseTime=time;
         //"(1-4,5,1-3);(8-10,4,11-13)"
@@ -71,7 +63,6 @@ public class SelectCourseView {
             if(each[1].equals("7"))
                 this.week="日";
 
-
             this.startStep=Integer.parseInt(each[2].split("-")[0]);
             String temp=each[2].split("-")[1];
             this.endStep=Integer.parseInt(temp.substring(0,temp.length()-1));
@@ -83,5 +74,4 @@ public class SelectCourseView {
             e.printStackTrace();
         }
     }
-
 }

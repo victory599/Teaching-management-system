@@ -6,10 +6,8 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 /**
- * @author 高谦
- * 学院 college 表 数据库操作类。
+ * 学院相关
  */
-
 @Repository
 public interface CollegeDao {
 
@@ -17,7 +15,9 @@ public interface CollegeDao {
 
     public College getCollegeById(String id);
 
+    // 获取学院名
     public List<String> getCollegeNames();
+
     public String getColNameById(int id);
 }
 

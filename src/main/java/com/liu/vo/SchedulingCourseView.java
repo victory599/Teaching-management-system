@@ -1,4 +1,4 @@
-package com.liu.views;
+package com.liu.vo;
 
 import lombok.Data;
 

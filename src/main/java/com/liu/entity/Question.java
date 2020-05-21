@@ -4,7 +4,7 @@ import lombok.Data;
 import org.apache.ibatis.type.Alias;
 
 /**
- * 课题
+ * 课题、论题
  */
 @Data
 @Alias(value = "Question")

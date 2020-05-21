@@ -1,7 +1,7 @@
 package com.liu.controller;
 import com.liu.dao.SchedulingDao;
 import com.liu.entity.User;
-import com.liu.views.MobileSchedulingView;
+import com.liu.vo.MobileSchedulingView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

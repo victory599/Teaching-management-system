@@ -10,17 +10,20 @@ import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.SQLException;
 
+/**
+ * 全局测试页面
+ */
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class SoftwareApplicationTests {
+public class EducationApplicationTests {
 
     @Autowired
     private DataSource dataSource;
+
     @Test
-    public void contextLoads() throws SQLException {
-        Connection connection=dataSource.getConnection();
+    public void testConnection() throws SQLException {
+        Connection connection = dataSource.getConnection();
         System.out.println(connection);
         connection.close();
     }
-
 }

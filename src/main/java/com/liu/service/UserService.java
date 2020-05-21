@@ -2,7 +2,7 @@ package com.liu.service;
 
 import com.liu.dao.UserDao;
 import com.liu.entity.User;
-import com.liu.views.UserAddView;
+import com.liu.vo.UserAddView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

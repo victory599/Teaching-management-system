@@ -3,8 +3,8 @@ import com.liu.dao.SelectCourseDao;
 import com.liu.entity.ScheduleMajor;
 import com.liu.entity.Scheduling;
 import com.liu.entity.SelectCourse;
-import com.liu.views.SelectCourseView;
-import com.liu.views.StudentGradeIndexView;
+import com.liu.vo.SelectCourseView;
+import com.liu.vo.StudentGradeIndexView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

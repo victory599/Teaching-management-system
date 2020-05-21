@@ -1,4 +1,4 @@
-package com.liu.views;
+package com.liu.vo;
 
 import lombok.Data;
 
@@ -11,5 +11,4 @@ public class MobileSchedulingView {
     private String address;
     private String course_time;
     private Integer capacity;
-
 }

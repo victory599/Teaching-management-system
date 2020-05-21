@@ -6,12 +6,6 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-/**
- * @author 高谦
- * 教师表 teacher 数据库擦作类。
- * @implements 孟庆强
- */
-
 @Repository
 public interface TeacherDao {
     public Teacher getByTno(Integer tno);
@@ -23,5 +17,4 @@ public interface TeacherDao {
     public void updateTeacher(Teacher teacher);
 
     public List<Teacher> getTeacherByTnoAndTname(@Param("tno") Integer tno, @Param("tname") String tname);
-
 }

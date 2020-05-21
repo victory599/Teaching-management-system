@@ -3,15 +3,14 @@ import com.liu.entity.ScheduleMajor;
 
 import com.liu.entity.Scheduling;
 import com.liu.entity.SelectCourse;
-import com.liu.views.SelectCourseView;
-import com.liu.views.StudentGradeIndexView;
+import com.liu.vo.SelectCourseView;
+import com.liu.vo.StudentGradeIndexView;
 
 import org.springframework.stereotype.Repository;
 import java.util.List;
 
 /**
- * @author  高谦
- * 查询选课相关信息的数据库访问层。
+ * 选课相关
  */
 @Repository
 public interface SelectCourseDao {
@@ -24,9 +23,8 @@ public interface SelectCourseDao {
     /**
      * 根据查询条件返回结果
      * @param view 条件集合
-     * @return  返回查询到的结果。
+     * @return 返回查询到的结果。
      */
-    //SelectCourseView view
     List<SelectCourseView> getAllAvaiableCourseWithCondition(SelectCourseView view);
 
     /**
@@ -43,10 +41,8 @@ public interface SelectCourseDao {
      */
     Integer addNewCourseToTable(SelectCourse selectCourse);
 
-
     /**
-     *  用于删除一个选课表中的数据
-     *  也就是取消选课
+     *  用于删除一个选课表中的数据，也就是取消选课
      * @param selectCourse   要取消的课程的信息。
      * @return
      */
@@ -77,5 +73,4 @@ public interface SelectCourseDao {
      * @return
      */
     Scheduling getSchedulingBySemesterIdAndCno(Scheduling scheduling);
-
 }

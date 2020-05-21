@@ -7,12 +7,15 @@
     <select id="getBySno" parameterType="Integer" resultType="com.liu.entity.Student">
         select * from student where student.sno= #{sno}
     </select>
+
     <select id="getAll" resultType="com.liu.entity.Student">
         select * from student
     </select>
+
     <insert id="insertStudnet" parameterType="com.liu.entity.Student">
         insert into student values (#{sno},#{sname},#{sex},#{major},#{klass},#{comeYear},#{phone},#{grade},#{majorId},#{college},#{collegeId})
     </insert>
+
     <select id="getStudentsByExample" parameterType="com.liu.entity.Student"
             resultType="com.liu.entity.Student">
         select * from student
@@ -31,6 +34,7 @@
             </if>
         </where>
     </select>
+
     <update id="updateStudent" parameterType="com.liu.entity.Student">
         update student
         <set>
@@ -69,5 +73,4 @@
             sno = #{sno}
         </where>
     </update>
-
 </mapper>

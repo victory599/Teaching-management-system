@@ -5,7 +5,7 @@ import com.liu.entity.User;
 import com.liu.service.GradeManagementService;
 import com.liu.service.PowerService;
 import com.liu.service.SemesterService;
-import com.liu.views.GradeManagementView;
+import com.liu.vo.GradeManagementView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

@@ -3,19 +3,19 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-
-<!-- 孟庆强 -->
 <mapper namespace="com.liu.dao.SemesterDao">
     <insert id="insertSemester" parameterType="com.liu.entity.Semester">
-    insert into semester values (#{semesterId},
-    #{start},#{end},#{semester})
+        insert into semester values(#{semesterId}, #{start}, #{end}, #{semester})
     </insert>
+
     <select id="getAll" resultType="com.liu.entity.Semester">
         select * from semester
     </select>
+
     <select id="getSemesterMostId" resultType="com.liu.entity.Semester">
         select * from semester order by semester.semesterid desc limit 1
     </select>
+
     <select id="getSemesterId" resultType="Integer">
         select semesterid from semester where start=#{year} and semester=#{semester}
     </select>
@@ -23,5 +23,4 @@
     <select id="getSemesterByStartAndSemester" resultType="com.liu.entity.Semester">
         select semesterid from semester where start=#{start} and semester=#{semester}
     </select>
-
 </mapper>

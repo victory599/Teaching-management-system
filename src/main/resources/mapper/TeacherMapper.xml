@@ -2,15 +2,16 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<!--author 高谦-->
-<!-- implements 孟庆强 -->
+
 <mapper namespace="com.liu.dao.TeacherDao">
     <select id="getByTno" parameterType="Integer" resultType="com.liu.entity.Teacher">
         select * from teacher where teacher.tno=#{tno}
     </select>
+
     <insert id="insertTeacher" parameterType="com.liu.entity.Teacher">
         insert into teacher values (#{tno},#{tname},#{sex},#{phone},#{email},#{collegeId},#{office},#{rank})
     </insert>
+
     <select id="queryByExample" parameterType="com.liu.entity.Teacher" resultType="com.liu.entity.Teacher">
         select * from teacher
         <where>
@@ -40,6 +41,7 @@
             </if>
         </where>
     </select>
+
     <update id="updateTeacher" parameterType="com.liu.entity.Teacher">
         update teacher
         <set>

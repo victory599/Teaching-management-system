@@ -40,7 +40,7 @@ public class SemesterService {
         return semesterList;
     }
 
-    public List<Semester> getSemesterDomain() {
+    public List<Semester> getSemesterEntity() {
         List<Semester> all = semesterDao.getAll();
         return all;
     }

@@ -6,14 +6,14 @@
 <mapper namespace="com.liu.dao.CourseDao">
 
     <select id="addCourse">
-        insert into course values (#{cno},#{cname},#{college},#{description},#{status})
+        insert into course values (#{cno}, #{cname}, #{college}, #{description}, #{status})
     </select>
 
-    <select id="checkCourse" resultType="Boolean">
-        select count(*) from course where cno=#{cno}
+    <select id="checkCourse" resultType="java.lang.Boolean">
+        select count(*) from course where cno = #{cno}
     </select>
 
-    <select id="getCnoByCname" parameterType="String" resultType="Integer">
-        select course.cno from course where course.cname=#{cname}
+    <select id="getCnoByCname" parameterType="java.lang.String" resultType="java.lang.Integer">
+        select c.cno from course c where c.cname = #{cname}
     </select>
 </mapper>

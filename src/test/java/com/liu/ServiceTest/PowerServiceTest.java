@@ -9,9 +9,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 /**
- * 权限服务层测试
- *
- * @author 孟庆强
+ * 权限相关业务测试
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -26,6 +24,7 @@ public class PowerServiceTest {
     public void initPower() {
         powerService.initPower();
     }
+
     /**
      * 获取信息测试
      */
@@ -34,6 +33,7 @@ public class PowerServiceTest {
         Power status = powerService.getStatus();
         System.out.println(status);
     }
+
     /**
      * 获得选课权限测试
      */
@@ -60,6 +60,7 @@ public class PowerServiceTest {
         powerService.closeSelectCourse();
         System.out.println(powerService.getStatus());
     }
+
     /**
      * 获得成绩录入权限测试
      */
@@ -86,6 +87,7 @@ public class PowerServiceTest {
         powerService.closeScore();
         System.out.println(powerService.getStatus());
     }
+
     /**
      * 获得学籍异动选课权限测试
      */

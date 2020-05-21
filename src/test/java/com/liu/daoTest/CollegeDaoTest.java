@@ -1,11 +1,11 @@
-package com.liu.mapperTest;
+package com.liu.daoTest;
 
 import com.liu.dao.CollegeDao;
 import com.liu.dao.UserDao;
 import com.liu.entity.College;
 import com.liu.service.CollegeService;
 import com.liu.service.UserService;
-import com.liu.views.UserAddView;
+import com.liu.vo.UserAddView;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,19 +28,21 @@ public class CollegeDaoTest {
     private DataSource dataSource;
     @Autowired
     UserService userService;
+
     @Test
-    public void getALL(){
+    public void getALL() {
         List<College> colleges = collegeDao.getColleges();
         System.out.println(colleges);
     }
+
     @Test
-    public void getCollegeByName(){
+    public void getCollegeByName() {
         UserAddView user = new UserAddView();
         user.setUserStatus(2);
         user.setUserType(2);
         user.setUserPassword("2222");
         user.setUserAccount(9090901);
-        userService.upDateUserPassword(user,"1234");
+        userService.upDateUserPassword(user, "1234");
 
         System.out.println(user);
 //        College college = collegeDao.getCollegeByName("化学工程学院");

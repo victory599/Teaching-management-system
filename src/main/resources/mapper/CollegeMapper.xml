@@ -11,17 +11,19 @@
         <result column="phone" javaType="String" jdbcType="VARCHAR" property="phone"></result>
         <result column="description" javaType="String" jdbcType="VARCHAR" property="description"></result>
     </resultMap>
-    <select id="getColleges" resultMap="getCollegesResultMap">select * from college</select>
-
-    <select id="getCollegeById" parameterType="String" resultType="College">
-        select college.college from college where college.collegeid = #{id}
+    <select id="getColleges" resultMap="getCollegesResultMap">
+        select * from college
     </select>
 
-    <select id="getCollegeNames" resultType="String">
+    <select id="getCollegeById" parameterType="java.lang.String" resultType="com.liu.entity.College">
+        select c.college from college c where c.collegeid = #{id}
+    </select>
+
+    <select id="getCollegeNames" resultType="java.lang.String">
         select collegename from college
     </select>
 
-    <select id="getColNameById" parameterType="int" resultType="String">
+    <select id="getColNameById" parameterType="int" resultType="java.lang.String">
         select collegename from college where collegeid = #{id}
     </select>
 </mapper>

@@ -5,7 +5,7 @@
 
 <mapper namespace="com.liu.dao.SelectCourseDao">
 
-    <resultMap id="getAllAvaiableCourseWithConditionMap" type="com.liu.views.SelectCourseView">
+    <resultMap id="getAllAvaiableCourseWithConditionMap" type="com.liu.vo.SelectCourseView">
         <!--排课表信息-->
         <id column="semesterid" javaType="Integer" jdbcType="INTEGER" property="semesterId"></id>
         <result column="cno" javaType="Integer" jdbcType="INTEGER" property="cno"></result>
@@ -32,7 +32,7 @@
     </resultMap>
 
     <select id="getAllAvaiableCourseWithCondition"
-            parameterType="com.liu.views.SelectCourseView"
+            parameterType="com.liu.vo.SelectCourseView"
             resultMap="getAllAvaiableCourseWithConditionMap">
         select
         teacher.tno, teacher.tname,course.cname,course.college,course.description,course.status as courseStatus,
@@ -69,9 +69,7 @@
         </where>
     </select>
 
-
-
-    <resultMap id="getAllAvaiableCourseMap" type="com.liu.views.SelectCourseView">
+    <resultMap id="getAllAvaiableCourseMap" type="com.liu.vo.SelectCourseView">
         <!--排课表信息-->
         <id column="semesterid" javaType="Integer" jdbcType="INTEGER" property="semesterId"></id>
         <result column="cno" javaType="Integer" jdbcType="INTEGER" property="cno"></result>
@@ -109,7 +107,6 @@
         </where>
     </select>
 
-
     <resultMap id="getAllCourseHaveBeenSelectedMap" type="com.liu.entity.SelectCourse">
         <!--选课表信息-->
         <id column="semesterid" javaType="Integer" jdbcType="INTEGER" property="semesterId"></id>
@@ -125,8 +122,6 @@
         select * from select_course where semesterid=#{semesterId} and select_course.sno=#{sno}
     </select>
 
-
-
     <insert id="addNewCourseToTable" parameterType="com.liu.entity.SelectCourse">
         insert into select_course
         <set>
@@ -139,14 +134,11 @@
         </set>
     </insert>
 
-
     <delete id="deleteCourseFromTable" parameterType="com.liu.entity.SelectCourse">
         delete from select_course where semesterid=#{semesterId} and sno=#{sno} and cno=#{cno}
     </delete>
 
-
-
-    <resultMap id="getCourseTableMap" type="com.liu.views.SelectCourseView">
+    <resultMap id="getCourseTableMap" type="com.liu.vo.SelectCourseView">
         <!--排课表信息-->
         <id column="semesterid" javaType="Integer" jdbcType="INTEGER" property="semesterId"></id>
         <result column="address" javaType="String" jdbcType="VARCHAR" property="address"></result>
@@ -175,7 +167,7 @@
         </where>
     </select>
 
-    <resultMap id="getGradMap" type="com.liu.views.StudentGradeIndexView">
+    <resultMap id="getGradMap" type="com.liu.vo.StudentGradeIndexView">
         <id column="cno" javaType="Integer" jdbcType="INTEGER" property="cno"></id>
         <result column="semester" javaType="Integer" jdbcType="INTEGER" property="semester"></result>
         <result column="start" javaType="Integer" jdbcType="INTEGER" property="start"></result>
@@ -198,5 +190,4 @@
     <select id="getSchedulingBySemesterIdAndCno" resultType="com.liu.entity.Scheduling">
         select * from scheduling where scheduling.semesterid=#{semesterId} and scheduling.cno=#{cno}
     </select>
-
 </mapper>

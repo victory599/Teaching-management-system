@@ -3,11 +3,11 @@ package com.liu.service;
 import com.liu.dao.*;
 import com.liu.entity.Teacher;
 import com.liu.utils.ResponseMessage;
-import com.liu.views.MobileSchedulingView;
-import com.liu.views.SchedulingCourseView;
-import com.liu.views.TeaCourseView;
+import com.liu.vo.MobileSchedulingView;
+import com.liu.vo.SchedulingCourseView;
+import com.liu.vo.TeaCourseView;
 
-import com.liu.views.SchedulingView;
+import com.liu.vo.SchedulingView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

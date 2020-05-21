@@ -5,7 +5,7 @@
 
 <mapper namespace="com.liu.dao.QuestionScoreDao">
 
-    <update id="changeQuestionScore" parameterType="QuestionScore">
+    <update id="changeQuestionScore" parameterType="com.liu.entity.QuestionScore">
         update question_score set
         earlyperformance = ${earlyperformance},
         midexam = ${midexam},
@@ -15,38 +15,21 @@
         where sno = ${sno}
     </update>
 
-
-    <select id="getAllQuestionScore" resultType="QuestionScore">
+    <select id="getAllQuestionScore" resultType="com.liu.entity.QuestionScore">
         select * from question_score
     </select>
 
-    <insert id="addQuestionScore" parameterType="QuestionScore">
-        insert into question_score(
-          sno,
-          questionid,
-          earlyperformance,
-          midexam,
-          thesisanswer,
-          paper,
-          extracredit
-        )values (
-        #{sno},
-        #{questionid},
-        #{earlyperformance},
-        #{midexam},
-        #{thesisanswer},
-        #{paper},
-        #{extracredit}
-        )
+    <insert id="addQuestionScore" parameterType="com.liu.entity.QuestionScore">
+        insert into question_score(sno, questionid, earlyperformance, midexam, thesisanswer, paper, extracredit)
+        values (#{sno}, #{questionid}, #{earlyperformance}, #{midexam}, #{thesisanswer}, #{paper}, #{extracredit})
     </insert>
 
-    <select id="getQuestionScoreBySno" parameterType="int" resultType="QuestionScore">
+    <select id="getQuestionScoreBySno" parameterType="int" resultType="com.liu.entity.QuestionScore">
         select * from question_score where sno = #{sno}
     </select>
 
-    <select id="getQuestionScoreByTno" parameterType="int" resultType="QuestionScore">
-        select * from question_score where questionid in (
-        select questionid from question where tno = #{tno}
-        )
+    <select id="getQuestionScoreByTno" parameterType="int" resultType="com.liu.entity.QuestionScore">
+        select * from question_score
+        where questionid in (select questionid from question where tno = #{tno})
     </select>
 </mapper>

@@ -2,7 +2,7 @@ package com.liu.controller;
 import com.liu.entity.User;
 import com.liu.service.UserService;
 import com.liu.utils.ResponseMessage;
-import com.liu.views.UserAddView;
+import com.liu.vo.UserAddView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;

@@ -3,7 +3,7 @@ package com.liu.service;
 import com.liu.dao.GradeManagementDao;
 import com.liu.dao.SchedulingDao;
 import com.liu.entity.Course;
-import com.liu.views.GradeManagementView;
+import com.liu.vo.GradeManagementView;
 import com.liu.entity.SelectCourse;
 import com.liu.utils.ExcelUtil;
 import org.springframework.beans.factory.annotation.Autowired;

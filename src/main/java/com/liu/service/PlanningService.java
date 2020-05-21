@@ -5,7 +5,7 @@ import com.liu.dao.MajorDao;
 import com.liu.dao.PlanningDao;
 import com.liu.dao.SemesterDao;
 import com.liu.utils.ResponseMessage;
-import com.liu.views.PlanningView;
+import com.liu.vo.PlanningView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

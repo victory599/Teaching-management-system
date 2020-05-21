@@ -5,10 +5,10 @@ import com.liu.entity.Teacher;
 import com.liu.entity.User;
 import com.liu.service.*;
 import com.liu.utils.UserAgentParser;
-import com.liu.views.SelectCourseView;
-import com.liu.views.StudentGradeIndexView;
+import com.liu.vo.SelectCourseView;
+import com.liu.vo.StudentGradeIndexView;
 
-import com.liu.views.TeaCourseView;
+import com.liu.vo.TeaCourseView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

@@ -4,8 +4,9 @@ import com.liu.entity.Power;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-/**
- * @author 孟庆强
+
+/*
+权限相关
  */
 @Repository
 public interface PowerDao {

@@ -17,15 +17,16 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
-
 @Configuration
 public class DatasourceConfiguration {
+    // 创建DataSource对象，同时读取容器中配置参数
     @Bean
     @ConfigurationProperties(prefix = "spring.datasource")
     public DataSource getDatasource(){
         return new DruidDataSource();
     }
-    // 配置德鲁伊数据源
+
+    // 配置德鲁伊数据源（druid）
     @Bean
     public ServletRegistrationBean<StatViewServlet> statViewServlet(){
         ServletRegistrationBean<StatViewServlet> bean = new ServletRegistrationBean<StatViewServlet>(new StatViewServlet(),"/druid/*");
@@ -33,25 +34,26 @@ public class DatasourceConfiguration {
 
         initParams.put("loginUsername", "admin");
         initParams.put("loginPassword", "123456");
-        //设置ip白名单
+        // 设置ip白名单
         initParams.put("allow", "");
-        //设置ip黑名单。deny优先级高于allow
+        // 设置ip黑名单。deny优先级高于allow
         initParams.put("deny", "192.168.10.125");
 
         bean.setInitParameters(initParams);
         return bean;
     }
+
     @Bean
     public FilterRegistrationBean<WebStatFilter> webStatFilter(){
         FilterRegistrationBean<WebStatFilter> bean = new FilterRegistrationBean<WebStatFilter>();
         bean.setFilter(new WebStatFilter());
 
         Map<String,String> initParams = new HashMap<String,String>();
-        //忽略过滤的形式
+        // 忽略过滤的形式
         initParams.put("exclusions", "*.js,*.css,/druid/*");
 
         bean.setInitParameters(initParams);
-        //设置过滤器过滤路径
+        // 设置过滤器过滤路径
         bean.setUrlPatterns(Arrays.asList("/*"));
         return bean;
     }

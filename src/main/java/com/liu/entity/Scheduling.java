@@ -3,7 +3,6 @@ package com.liu.entity;
 import lombok.Data;
 import org.apache.ibatis.type.Alias;
 
-
 /**
  * 课表
  */

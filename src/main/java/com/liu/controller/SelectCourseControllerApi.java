@@ -12,7 +12,7 @@ import com.liu.service.ConflictService;
 import com.liu.service.SelectCourseService;
 import com.liu.service.SemesterService;
 import com.liu.utils.ResponseMessage;
-import com.liu.views.SelectCourseView;
+import com.liu.vo.SelectCourseView;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -177,7 +177,7 @@ public class SelectCourseControllerApi {
      */
     @GetMapping("/getsemesterlist")
     public ResponseMessage getsemesterlist(){
-        List<Semester> semesters=semesterService.getSemesterDomain();
+        List<Semester> semesters=semesterService.getSemesterEntity();
         return new ResponseMessage(200,"全部的信息",semesters);
     }
 

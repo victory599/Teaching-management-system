@@ -3,7 +3,8 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.liu.dao.SchedulingDao">
-    <resultMap id="getAllCoursesMap" type="com.liu.views.SchedulingCourseView">
+
+    <resultMap id="getAllCoursesMap" type="com.liu.vo.SchedulingCourseView">
         <id property="tname" javaType="String" column="tname"  jdbcType="VARCHAR" ></id>
         <id property="address" javaType="String" column="address"  jdbcType="VARCHAR" ></id>
         <id property="course_time" javaType="String" column="course_time"  jdbcType="VARCHAR" ></id>
@@ -33,8 +34,7 @@
 
     </select>
 
-
-    <resultMap id="getCourseMap" type="com.liu.views.SchedulingView">
+    <resultMap id="getCourseMap" type="com.liu.vo.SchedulingView">
         <id property="tno" javaType="Integer" column="tno"  jdbcType="INTEGER" ></id>
         <id property="address" javaType="String" column="address"  jdbcType="VARCHAR" ></id>
         <id property="time" javaType="String" column="course_time"  jdbcType="VARCHAR" ></id>
@@ -43,50 +43,39 @@
     </resultMap>
     <select id="getCourse" resultMap="getCourseMap">
           select tno,address,course_time,status,capacity from scheduling
-          where
-            semesterid=#{semesterId}
-          and
-            cno=#{cno}
+          where semesterid=#{semesterId} and cno=#{cno}
     </select>
+
     <select id="deleteCourse" resultType="Boolean">
         delete from scheduling where semesterid=#{semesterId} and cno=#{cno}
     </select>
+
     <select id="deleteCourseMajor" resultType="Boolean">
         delete from schedule_major
-        where
-          semesterid=#{semesterId}
-        and
-          cno=#{cno}
-        and
-          majorid=#{majorId}
+        where semesterid=#{semesterId} and cno=#{cno} and majorid=#{majorId}
     </select>
 
     <select id="addCourse" resultType="Boolean">
-        insert into scheduling values (#{semesterId},#{cno},#{tno},#{status},#{capacity},
-        #{address},"20,30,50",#{grade},#{time});
+        insert into scheduling values(#{semesterId},#{cno},#{tno},#{status},#{capacity}, #{address},"20,30,50",#{grade},#{time});
     </select>
+
     <select id="addCourseMajor" resultType="Boolean">
         insert into schedule_major values(#{semesterId},#{cno},#{majorId},#{grade})
     </select>
+
     <select id="getCourseMajorCount" resultType="Integer">
         select count(*) from schedule_major where semesterid=#{semesterId} and cno=#{cno}
     </select>
+
     <select id="checkCourseMajor" resultType="Integer">
         select 1 from schedule_major
-        where
-          semesterid=#{semesterId}
-        and
-          cno=#{cno}
-        and
-          majorid=#{majorId}
-        and
-          grade=#{grade}
+        where semesterid=#{semesterId} and cno=#{cno} and majorid=#{majorId} and grade=#{grade}
     </select>
 
-    <!--下面的三条用于老师时间，学生时间，教室使用时间的冲突检测。  高谦编写-->
+    <!-- 老师时间、学生时间、教室使用时间的冲突检测 -->
     <select id="getTeacherTaskTime" resultType="String">
-        select scheduling.course_time from scheduling where scheduling.semesterid=#{semesterId}
-        and scheduling.tno=#{tno}
+        select s.course_time from scheduling s
+        where s.semesterid=#{semesterId} and s.tno=#{tno}
     </select>
 
     <select id="getStudentTaskTime" resultType="String">
@@ -100,7 +89,7 @@
         select scheduling.course_time from scheduling where scheduling.semesterid=#{semesterId} and scheduling.address=#{room}
     </select>
 
-    <resultMap id="cao" type="com.liu.views.MobileSchedulingView">
+    <resultMap id="cao" type="com.liu.vo.MobileSchedulingView">
         <id property="tno" javaType="Integer" column="tno"  jdbcType="INTEGER" ></id>
         <id property="tname" javaType="String" column="tname"  jdbcType="VARCHAR" ></id>
         <id property="cno" javaType="Integer" column="cno"  jdbcType="INTEGER" ></id>
@@ -111,9 +100,9 @@
     </resultMap>
 
     <select id="getCoursesByTnoAndTnameAndAddress" resultMap="cao">
-    <bind name="_tname" value="'%'+ tname + '%'"></bind>
-    <bind name="_tno" value="'%' + tno + '%'"></bind>
-    <bind name="_address" value="'%' + address + '%'"></bind>
+        <bind name="_tname" value="'%'+ tname + '%'"></bind>
+        <bind name="_tno" value="'%' + tno + '%'"></bind>
+        <bind name="_address" value="'%' + address + '%'"></bind>
         select scheduling.tno,tname,scheduling.cno,cname,address,course_time,capacity from scheduling,teacher,course
         <where>
             scheduling.tno = teacher.tno
@@ -135,7 +124,7 @@
 
     </select>
 
-    <select id="getCourseInfoByTno" parameterType="int" resultType="com.liu.views.TeaCourseView">
+    <select id="getCourseInfoByTno" parameterType="int" resultType="com.liu.vo.TeaCourseView">
     select semesterid,teaInfo.cno,capacity,address,course_time,cname from
     (
     (select semesterid,cno,capacity,address,course_time from scheduling
@@ -144,7 +133,5 @@
     (select cno,cname from course) as courseInfo
     on teaInfo.cno=courseInfo.cno
     )
-
     </select>
-
 </mapper>

@@ -1,4 +1,4 @@
-package com.liu.views;
+package com.liu.vo;
 
 import lombok.Data;
 
@@ -8,5 +8,4 @@ public class UserAddView {
     private String userPassword;
     private Integer userType;
     private Integer userStatus;
-
 }

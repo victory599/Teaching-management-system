@@ -4,7 +4,7 @@ import lombok.Data;
 import org.apache.ibatis.type.Alias;
 
 /**
- * 学院表 domain 类
+ * 学院
  */
 @Data
 @Alias(value = "college")
