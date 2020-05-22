@@ -8,52 +8,57 @@ import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.converter.HttpMessageConverter;
-import org.springframework.http.converter.StringHttpMessageConverter;
 
 import javax.sql.DataSource;
-import java.nio.charset.Charset;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
+/*
+配置数据源和Druid的监控统计功能
+ */
 @Configuration
-public class DatasourceConfiguration {
-    // 创建DataSource对象，同时读取容器中配置参数
+public class DruidConfiguration {
+    // 获取容器中数据源配置信息，创建数据源对象
     @Bean
     @ConfigurationProperties(prefix = "spring.datasource")
     public DataSource getDatasource(){
         return new DruidDataSource();
     }
 
-    // 配置德鲁伊数据源（druid）
+    // springboot配置Servlet，加入druid页面配置
     @Bean
-    public ServletRegistrationBean<StatViewServlet> statViewServlet(){
-        ServletRegistrationBean<StatViewServlet> bean = new ServletRegistrationBean<StatViewServlet>(new StatViewServlet(),"/druid/*");
-        Map<String,String> initParams = new HashMap<String,String>();
+    public ServletRegistrationBean<StatViewServlet> druidServlet(){
+        // druid监控，StatViewServlet：提供监控信息展示的html页面、提供监控信息的JSON API
+        ServletRegistrationBean<StatViewServlet> bean = new ServletRegistrationBean<>(new StatViewServlet(),"/druid/*");
 
-        initParams.put("loginUsername", "admin");
-        initParams.put("loginPassword", "123456");
+        Map<String, String> initParams = new HashMap<>();
+
+        // 用户名和密码
+        initParams.put("loginUsername", "root");
+        initParams.put("loginPassword", "a");
         // 设置ip白名单
         initParams.put("allow", "");
-        // 设置ip黑名单。deny优先级高于allow
+        // 设置ip黑名单。注意：deny优先级高于allow，如果配置了同一个ip，以deny配置为主
         initParams.put("deny", "192.168.10.125");
 
         bean.setInitParameters(initParams);
         return bean;
     }
 
+    // springboot配置Filter，实现druid监控操作
     @Bean
     public FilterRegistrationBean<WebStatFilter> webStatFilter(){
-        FilterRegistrationBean<WebStatFilter> bean = new FilterRegistrationBean<WebStatFilter>();
+        FilterRegistrationBean<WebStatFilter> bean = new FilterRegistrationBean<>();
         bean.setFilter(new WebStatFilter());
 
-        Map<String,String> initParams = new HashMap<String,String>();
-        // 忽略过滤的形式
-        initParams.put("exclusions", "*.js,*.css,/druid/*");
+        Map<String,String> initParams = new HashMap<>();
 
+        // 排除名单
+        initParams.put("exclusions", "*.js,*.css,/druid/*");
         bean.setInitParameters(initParams);
-        // 设置过滤器过滤路径
+
+        // 对所有请求进行监控处理
         bean.setUrlPatterns(Arrays.asList("/*"));
         return bean;
     }
