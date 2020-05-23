@@ -10,19 +10,8 @@ import java.lang.reflect.Field;
 import java.util.List;
 
 /**
- *
- * @author 孟庆强
- * 把domain的字段写入Excel文件
- * <p>
- * 已经测试通过的字段类型有
- * Integer Double Date(sql) Date(util)
- * Boolean String
- * <p>
- * 适配 POI version :3.17
- *
- * @param <T> domain 范型
- * @author spring
- * @version 0.0.1
+ * 把entity的字段写入Excel文件
+ * 已经测试通过的字段类型有：Integer Double Date(sql) Date(util) Boolean String
  */
 public class ExcelBeanWriter<T> {
     /**
@@ -36,7 +25,6 @@ public class ExcelBeanWriter<T> {
 
     /**
      * 构造方法
-     *
      * @param clazz        Bean的字节码
      * @param hssfWorkbook xls工作表
      */
@@ -47,14 +35,13 @@ public class ExcelBeanWriter<T> {
     }
 
     /**
-     * 把对象写入新的sheet，并且返回新创建的sheet
-     * list为空时返回null
-     *
+     * 把对象写入新的sheet并返回sheet，list为空时返回null
      * @param list 存放对象的List
      * @return sheet.getSheetName() or null
      */
     public Sheet write(List<T> list) throws NoSuchFieldException, IllegalAccessException {
-        if (list.size() == 0) return null;
+        if (list.size() == 0)
+            return null;
         HSSFSheet sheet = hssfWorkbook.createSheet();
         writePropertyName(sheet);
         writeProperties(list, sheet, 1);
@@ -62,9 +49,7 @@ public class ExcelBeanWriter<T> {
     }
 
     /**
-     * 把List封装的Bean写入表格
-     * 允许存在NULL属性，用NULL填装
-     *
+     * 把List封装的Bean写入表格，允许存在null属性，用null填装
      * @param list  存放对象的List
      * @param sheet Excel中sheet
      * @param index 行偏移
@@ -86,7 +71,6 @@ public class ExcelBeanWriter<T> {
 
     /**
      * 把数据的属性名写入第一行
-     *
      * @param sheet Excel中sheet对象
      */
     private void writePropertyName(Sheet sheet) {
@@ -99,7 +83,6 @@ public class ExcelBeanWriter<T> {
 
     /**
      * 追加数据到最后一行
-     *
      * @param sheet Excel中sheet对象
      * @param list  需要追加存放对象的List
      * @throws NoSuchFieldException

@@ -1,7 +1,7 @@
 package com.liu.entity;
 
 /**
- * planning实体类
+ * 排课计划
  */
 public class Planning {
     private Integer semesterId;

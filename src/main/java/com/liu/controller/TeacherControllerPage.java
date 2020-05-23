@@ -24,6 +24,7 @@ public class TeacherControllerPage {
         }
         return user.getType() == 2;
     }
+
     @RequestMapping("/TeachersInfo")
     public String teacherIofo(HttpServletRequest request) {
         if (checkPower(request) == false) {
@@ -41,7 +42,6 @@ public class TeacherControllerPage {
         }
         List<Teacher> allTeacher = (List<Teacher>) request.getSession().getAttribute("allTeacher");
         request.setAttribute("allTeacher", allTeacher);
-        System.out.println(allTeacher);
         return "TeachersInfo";
     }
 
@@ -59,12 +59,11 @@ public class TeacherControllerPage {
                                 @RequestParam("email") String email,
                                 @RequestParam("collegeid") Integer collegeid,
                                 @RequestParam("office") String office,
-                                @RequestParam("rank") String rank,HttpServletRequest request) {
+                                @RequestParam("rank") String rank, HttpServletRequest request) {
         if (checkPower(request) == false) {
             return "error";
         }
         Teacher teacher = new Teacher(tno, tname, sex, phone, email, collegeid, office, rank);
-        System.out.println(teacher);
         if (teacherService.getTeacherByTno(tno) == null) {
             teacherService.addTeacher(teacher);
         } else {
@@ -72,6 +71,7 @@ public class TeacherControllerPage {
         }
         return "forward:/TeachersInfo";
     }
+
     @RequestMapping("/SearchTeachers")
     public String searchTeachers(HttpServletRequest httpServletRequest) {
         if (checkPower(httpServletRequest) == false) {
@@ -93,11 +93,10 @@ public class TeacherControllerPage {
         teacher.setSex(sex);
         teacher.setTname(tname);
         List<Teacher> teacherByExample = teacherService.getTeacherByExample(teacher);
-//        List<Student> studentsByExample = studentService.getStudentsByExample(student);
-//        System.out.println(studentsByExample);
         httpServletRequest.getSession().setAttribute("allTeacher", teacherByExample);
         return "forward:/TeacherPage";
     }
+
     @RequestMapping("/UpdateTeacher")
     public String updateTeacher(Map<String, Object> paramMap, HttpServletRequest httpServletRequest) {
         if (checkPower(httpServletRequest) == false) {
@@ -105,10 +104,7 @@ public class TeacherControllerPage {
         }
         String tno = httpServletRequest.getParameter("tno");
         int tno_int = Integer.parseInt(tno);
-        System.out.println(tno);
         Teacher teacher = teacherService.getTeacherByTno(tno_int);
-        System.out.println(teacher);
-        System.out.println("test");
         paramMap.put("needUpdateTeacher", teacher);
         return "TeachersAlter";
     }

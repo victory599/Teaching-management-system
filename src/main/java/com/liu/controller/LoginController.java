@@ -11,6 +11,7 @@ import com.liu.vo.StudentGradeIndexView;
 import com.liu.vo.TeaCourseView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -22,10 +23,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * @author 高谦
- * 登录功能实现
- * 特别注意，这里不可以配置拦截。
- * 网站如果登录页面都需要已登录的用户才可以看到的话，那就很荒谬了。
+ * 登录登出功能实现，注意：登录界面不要设置拦截
  */
 @Controller
 public class LoginController {
@@ -45,62 +43,58 @@ public class LoginController {
     CollegeService collegeService;
 
     /**
-     * 登录页面网址，请求这个地址用于展现登录页面
-     * 当然，如果已经有登陆信息的话，会直接跳转到登录成功的界面。
-     *
-     * @param request 这里是 一个HttpServletRequest 用于获取 session 相关信息。
+     * 首页，如果没有登录则跳转到登录页面
+     * @param request
+     * @param model
      * @return
      */
     @RequestMapping("/index")
-    public String index(HttpServletRequest request, Map<String, Object> parmMap) {
+    public String index(HttpServletRequest request, Map<String, Object> model) {
         HttpSession session = request.getSession();
         Object userInfo = session.getAttribute("user");
         Integer semesterId = semesterService.getCurrentSemesterId();
 
-        /**
-         * 获取当前的用户使用的是什么设备。
-         */
-        String useragent = request.getHeader("User-Agent");
-        UserAgentParser userAgentParser = new UserAgentParser(useragent);
+        // 判断当前访问用户的使用平台：pc端还是Mobil端
+        String userAgent = request.getHeader("User-Agent");
+        UserAgentParser userAgentParser = new UserAgentParser(userAgent);
         String platform = userAgentParser.getPlatform();
 
+        // 判断是否已登录
         if (userInfo == null) {
+            // 没有登录，跳转登录页面
             if (platform.equals("mobile"))
                 return "MobileLogin";
-            else
-                return "login";
-
+            return "login";
         } else {
+            // 已经登录，判断用户类别：0表示学生，1表示教师，2表示管理员
             User user = (User) userInfo;
             Integer type = user.getType();
-            parmMap.put("userinfo", user);
+            model.put("userinfo", user);
             if (type == 0) {
                 List<SelectCourseView> courseTable = selectCourseService.getCourseTable(semesterId, user.getAccount());
                 List<StudentGradeIndexView> gradeList = selectCourseService.getGrade(semesterId, user.getAccount());
-                parmMap.put("courseTable", courseTable);
-                parmMap.put("gradeList", gradeList);
+                model.put("courseTable", courseTable);
+                model.put("gradeList", gradeList);
 
                 if (platform.equals("mobile"))
                     return "msh";
 
                 return "student";
-            }
-            if (type == 1) {
+            }else if (type == 1) {
                 int tno = user.getAccount();
                 List<TeaCourseView> teaCourseViews = schedulingService.getCourseInfoByTno(tno);
                 session.setAttribute("CourseTable",teaCourseViews);
 
-                parmMap.put("courseTable", teaCourseViews);//课表
+                model.put("courseTable", teaCourseViews);   //课表
                 Teacher teacher = teacherService.getTeacherByTno(tno);
-                parmMap.put("teainfo", teacher);
+                model.put("teainfo", teacher);
                 int cid = teacher.getCollegeId();
                 String colname = collegeService.getColnameById(cid);
-                parmMap.put("colname", colname);
+                model.put("colname", colname);
                 if (platform.equals("mobile"))
                     return "MobileTeacherHome";
                 return "teacher";
-            }
-            if(type==2){
+            }else if(type == 2){
                 if (platform.equals("mobile")) {
                     return "redirect:/GoMobileHomePage";
                 } else {
@@ -112,43 +106,30 @@ public class LoginController {
     }
 
     /**
-     * 这是点击登录按钮之后的处理函数: 查数据库，匹配密码等。
-     *
+     * 处理登录请求: 验证账号、查询数据等
      * @param request
      * @return
      */
-    @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public String login(HttpServletRequest request,
-                        Map<String, Object> paraMap,
-                        @RequestParam("account") String account,
-                        @RequestParam("password") String password) {
-
-
-        /**
-         * 获取当前的用户使用的是什么设备。
-         */
+    @PostMapping(value = "/login")
+    public String login(HttpServletRequest request, Map<String, Object> model,
+                        @RequestParam("account") String account, @RequestParam("password") String password) {
+        // 判断当前访问用户的使用平台：pc端还是Mobil端
         String useragent = request.getHeader("User-Agent");
         UserAgentParser userAgentParser = new UserAgentParser(useragent);
         String platform = userAgentParser.getPlatform();
 
-
-
-        HttpSession session=request.getSession();
-        User user=userService.LoginFun(account,password);
-        if(user==null){
-            paraMap.put("error_msg","用户名或者密码错误，请重新输入");
-
-
+        HttpSession session = request.getSession();
+        User user = userService.LoginFun(account, password);
+        if(user == null){
+            model.put("error_msg", "用户名或者密码错误，请重新输入!");
             if (platform.equals("mobile"))
                 return "MobileLogin";
-
             return "login";
         } else {
-            // 查询详细保存在session 中，也就是说登录的是一个学生的话，
-            // 还要保存学生的信息，如果是一个老师，要保存一个老师的信息
+            // 判断用户类别，并保存信息到session中
             boolean error = false;
             if (user.getType() == 0) {
-                // 是一个学生
+                // 学生
                 Student student = studentService.getStudentBySno(user.getAccount());
                 if (student != null) {
                     user.setMajor(student.getMajor());
@@ -156,10 +137,11 @@ public class LoginController {
                     user.setMajorid(student.getMajorId());
                     user.setCollege(student.getCollege());
                     user.setKlass(student.getKlass());
-
-                } else error = true;
+                } else {
+                    error = true;
+                }
             } else if (user.getType() == 1) {
-                // 是一个老师
+                // 老师
                 Teacher teacher = teacherService.getTeacherByTno(user.getAccount());
                 if (teacher != null) {
                     user.setTname(teacher.getTname());
@@ -167,7 +149,7 @@ public class LoginController {
                     error = true;
                 }
             } else if (user.getType() == 2) {
-                // 这是管理员
+                // 管理员
                 Teacher teacher = teacherService.getTeacherByTno(user.getAccount());
                 if (teacher != null) {
                     user.setTname(teacher.getTname());
@@ -176,11 +158,9 @@ public class LoginController {
                 }
             }
             if (error) {
-                paraMap.put("error_msg", "数据库中找不到您的详细信息，请联系管理员");
-
+                model.put("error_msg", "数据库中找不到您的详细信息，请联系管理员！");
                 if (platform.equals("mobile"))
                     return "MobileLogin";
-
                 return "login";
             } else {
                 session.setAttribute("user", user);

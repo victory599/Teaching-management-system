@@ -4,11 +4,11 @@ import lombok.Data;
 
 @Data
 public class SelectCourseView {
-    //公共字段
+    // 公共字段
     private Integer semesterId;
     private Integer cno;
 
-    //课程表特有字段
+    // 课程表特有字段
     private String cname;
     private String college;
     private String description;
@@ -23,7 +23,7 @@ public class SelectCourseView {
     private String percent;
     private String majorGrade;
 
-    //拆分时间；
+    // 课表时间，进行拆分
     private Integer startWeek;
     private Integer endWeek;
     private String week;

@@ -13,7 +13,7 @@
     </select>
 
     <select id="getSemesterMostId" resultType="com.liu.entity.Semester">
-        select * from semester order by semester.semesterid desc limit 1
+        select * from semester s order by s.semesterid desc limit 1
     </select>
 
     <select id="getSemesterId" resultType="Integer">

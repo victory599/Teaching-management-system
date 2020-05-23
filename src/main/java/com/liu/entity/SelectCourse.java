@@ -3,7 +3,7 @@ package com.liu.entity;
 import lombok.Data;
 
 /**
- * 选课信息
+ * 选课成绩信息
  */
 @Data
 public class SelectCourse {

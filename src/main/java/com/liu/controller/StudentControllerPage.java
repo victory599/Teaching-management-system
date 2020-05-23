@@ -17,6 +17,7 @@ import java.util.Map;
 public class StudentControllerPage {
     @Autowired
     StudentService studentService;
+
     public boolean checkPower(HttpServletRequest request) {
         User user = (User) request.getSession().getAttribute("user");
         if (user == null) {
@@ -24,6 +25,7 @@ public class StudentControllerPage {
         }
         return user.getType() == 2;
     }
+
     @RequestMapping("/StudentsInfo")
     public String studentsIofo(HttpServletRequest request) {
         if (checkPower(request) == false) {
@@ -40,7 +42,6 @@ public class StudentControllerPage {
             return "error";
         }
         Object allStudent = httpServletRequest.getSession().getAttribute("allStudent");
-        System.out.println(allStudent);
         httpServletRequest.setAttribute("allStudent", allStudent);
         return "StudentsInfo";
     }
@@ -65,11 +66,10 @@ public class StudentControllerPage {
                                 @RequestParam("grade") String grade,
                                 @RequestParam("college") String college,
                                 @RequestParam("collegeId") Integer collegeId,
-                                @RequestParam("majorId") Integer majorId,HttpServletRequest request) {
+                                @RequestParam("majorId") Integer majorId, HttpServletRequest request) {
         if (checkPower(request) == false) {
             return "error";
         }
-        System.out.println(phone);
         Student student = new Student(sno, sname, sex, major, klass, comeYear, phone, college, collegeId, grade, majorId);
         if (studentService.getStudentBySno(sno) == null) {
             studentService.saveStudent(student);
@@ -78,7 +78,6 @@ public class StudentControllerPage {
         }
         return "forward:/StudentsInfo";
     }
-
 
     @PostMapping("/SearchStudents")
     public String searchStudents(HttpServletRequest httpServletRequest) {
@@ -100,23 +99,19 @@ public class StudentControllerPage {
         student.setGrade(grade);
         student.setMajor(major);
         List<Student> studentsByExample = studentService.getStudentsByExample(student);
-        System.out.println(studentsByExample);
         httpServletRequest.getSession().setAttribute("allStudent", studentsByExample);
         return "forward:/StudensPage";
     }
 
     @RequestMapping("/UpdateStudent")
-    public String updateStudent(Map<String, Object> paramMap,HttpServletRequest httpServletRequest) {
+    public String updateStudent(Map<String, Object> model, HttpServletRequest httpServletRequest) {
         if (checkPower(httpServletRequest) == false) {
             return "error";
         }
         String sno = httpServletRequest.getParameter("sno");
         int sno_int = Integer.parseInt(sno);
         Student student = studentService.getStudentBySno(sno_int);
-        System.out.println(student);
-        System.out.println("test");
-        paramMap.put("needUpdateStudent", student);
+        model.put("needUpdateStudent", student);
         return "StudentsAlter";
     }
-
 }

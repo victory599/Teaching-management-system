@@ -3,7 +3,7 @@ package com.liu.entity;
 import lombok.Data;
 
 /**
- * 专业的课表
+ * 专业需要上的课表
  */
 @Data
 public class ScheduleMajor {

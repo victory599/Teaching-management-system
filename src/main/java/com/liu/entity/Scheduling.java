@@ -4,7 +4,7 @@ import lombok.Data;
 import org.apache.ibatis.type.Alias;
 
 /**
- * 课表
+ * 完整课表
  */
 @Data
 @Alias("Scheduling")

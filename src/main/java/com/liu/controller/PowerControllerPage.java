@@ -30,10 +30,16 @@ public class PowerControllerPage {
     StudentService studentService;
     @Autowired
     TeacherService teacherService;
-    //传参...
+
+    // 传参...
     private Integer tmpcno;
     private Integer tmpSemesterId;
 
+    /**
+     * 检查权限，是否管理员
+     * @param request
+     * @return
+     */
     public boolean checkPower(HttpServletRequest request) {
         User user = (User) request.getSession().getAttribute("user");
         if (user == null) {
@@ -60,7 +66,7 @@ public class PowerControllerPage {
         }
         // 获取文件名
         String fileName = multfile.getOriginalFilename();
-        // 获取文件后缀
+        // 获取文件前缀
         String prefix = fileName.substring(fileName.lastIndexOf("."));
         // 用uuid作为文件名，防止生成的临时文件重复
         File file = null;
@@ -69,14 +75,14 @@ public class PowerControllerPage {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        // MultipartFile to File
+        // 转存文件
         try {
             multfile.transferTo(file);
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        /* 测试数据*/
+        /* 测试数据 */
         tmpSemesterId = 1;
         tmpcno = 1;
 
@@ -84,16 +90,15 @@ public class PowerControllerPage {
             return "文件名不能为空！";
         } else {
             if (fileName.endsWith("xls") || fileName.endsWith("xlsx")) {
-//                Boolean isOk = (tmpSemesterId,tmpcno,file);
-                boolean ok = false;
+                boolean flag = false;
                 try {
-                    ok = studentService.excel(file);
+                    flag = studentService.excel(file);
                 } catch (Exception e) {
                     return "导入失败";
                 }
-                //导入结束时，删除临时文件
+                // 导入结束时，删除临时文件
                 deleteFile(file);
-                if (ok) {
+                if (flag) {
                     return "导入成功！";
                 } else {
                     return "导入失败！";
@@ -101,18 +106,17 @@ public class PowerControllerPage {
             }
             return "文件格式错误！";
         }
-
     }
 
     @ResponseBody
     @RequestMapping("/ExcelAfterInsertForT")
-    public String excelAfterInsertForT(HttpServletRequest request, @RequestParam("file") MultipartFile multfile) {
+    public String excelAfterInsertForT(HttpServletRequest request, @RequestParam("file") MultipartFile multipartFile) {
         if (checkPower(request) == false) {
             return "error";
         }
         // 获取文件名
-        String fileName = multfile.getOriginalFilename();
-        // 获取文件后缀
+        String fileName = multipartFile.getOriginalFilename();
+        // 获取文件前缀
         String prefix = fileName.substring(fileName.lastIndexOf("."));
         // 用uuid作为文件名，防止生成的临时文件重复
         File file = null;
@@ -121,14 +125,14 @@ public class PowerControllerPage {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        // MultipartFile to File
+        // 转存文件
         try {
-            multfile.transferTo(file);
+            multipartFile.transferTo(file);
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        /* 测试数据*/
+        /* 测试数据 */
         tmpSemesterId = 1;
         tmpcno = 1;
 
@@ -136,16 +140,15 @@ public class PowerControllerPage {
             return "文件名不能为空！";
         } else {
             if (fileName.endsWith("xls") || fileName.endsWith("xlsx")) {
-//                Boolean isOk = (tmpSemesterId,tmpcno,file);
-                boolean ok = false;
+                boolean flag = false;
                 try {
-                    ok = teacherService.excel(file);
+                    flag = teacherService.excel(file);
                 } catch (Exception e) {
                     return "导入失败";
                 }
-                //导入结束时，删除临时文件
+                // 导入结束时，删除临时文件
                 deleteFile(file);
-                if (ok) {
+                if (flag) {
                     return "导入成功！";
                 } else {
                     return "导入失败！";
@@ -153,44 +156,21 @@ public class PowerControllerPage {
             }
             return "文件格式错误！";
         }
-
-    }
-
-    /**
-     * 获取32位UUID字符串 临时文件名
-     *
-     * @return
-     */
-    public static String getUUID() {
-        return UUID.randomUUID().toString().replaceAll("-", "");
-    }
-
-    /**
-     * 删除临时文件
-     *
-     * @param files
-     */
-    private void deleteFile(File... files) {
-        for (File file : files) {
-            if (file.exists()) {
-                file.delete();
-            }
-        }
     }
 
     @RequestMapping("/GoHomePage")
-    public String homePage(Map<String, Object> parMap, HttpServletRequest request) {
+    public String homePage(Map<String, Object> model, HttpServletRequest request) {
         if (checkPower(request) == false) {
             return "error";
         }
         Power status = powerService.getStatus();
-        parMap.put("power", status);
+        model.put("power", status);
         request.setAttribute("currentSemesterInfo", semesterService.getCurrentSemesterInfo());
         return "HomePage";
     }
 
     @RequestMapping("/PowerManage")
-    public String powerControll(Map<String, Object> parMap, HttpServletRequest request) {
+    public String powerControll(Map<String, Object> model, HttpServletRequest request) {
         if (checkPower(request) == false) {
             return "error";
         }
@@ -201,7 +181,7 @@ public class PowerControllerPage {
     }
 
     @PostMapping("/OpenSelectCourse")
-    public String openSelectCourse(Map<String, Object> parMap, HttpServletRequest request) {
+    public String openSelectCourse(Map<String, Object> model, HttpServletRequest request) {
         if (checkPower(request) == false) {
             return "error";
         }
@@ -210,7 +190,7 @@ public class PowerControllerPage {
     }
 
     @PostMapping("/OpenScore")
-    public String openScore(Map<String, Object> parMap, HttpServletRequest request) {
+    public String openScore(Map<String, Object> model, HttpServletRequest request) {
         if (checkPower(request) == false) {
             return "error";
         }
@@ -219,7 +199,7 @@ public class PowerControllerPage {
     }
 
     @PostMapping("/OpenAbnormal")
-    public String openAbnormal(Map<String, Object> parMap, HttpServletRequest request) {
+    public String openAbnormal(Map<String, Object> model, HttpServletRequest request) {
         if (checkPower(request) == false) {
             return "error";
         }
@@ -228,7 +208,7 @@ public class PowerControllerPage {
     }
 
     @PostMapping("/CloseAbnormal")
-    public String closeAbnormal(Map<String, Object> parMap, HttpServletRequest request) {
+    public String closeAbnormal(Map<String, Object> model, HttpServletRequest request) {
         if (checkPower(request) == false) {
             return "error";
         }
@@ -237,7 +217,7 @@ public class PowerControllerPage {
     }
 
     @PostMapping("/CloseScore")
-    public String closeScore(Map<String, Object> parMap, HttpServletRequest request) {
+    public String closeScore(Map<String, Object> model, HttpServletRequest request) {
         if (checkPower(request) == false) {
             return "error";
         }
@@ -246,12 +226,31 @@ public class PowerControllerPage {
     }
 
     @PostMapping("/CloseSelectCourse")
-    public String closeSelectCourse(Map<String, Object> parMap, HttpServletRequest request) {
+    public String closeSelectCourse(Map<String, Object> model, HttpServletRequest request) {
         if (checkPower(request) == false) {
             return "error";
         }
         powerService.closeSelectCourse();
         return "redirect:/PowerManage";
     }
-//    @RequestMapping("/HomePage")
+
+    /**
+     * 获取32位UUID字符串 临时文件名
+     * @return
+     */
+    public static String getUUID() {
+        return UUID.randomUUID().toString().replaceAll("-", "");
+    }
+
+    /**
+     * 删除临时文件
+     * @param files
+     */
+    private void deleteFile(File... files) {
+        for (File file : files) {
+            if (file.exists()) {
+                file.delete();
+            }
+        }
+    }
 }

@@ -22,101 +22,87 @@ public class QuestionStudentChooseController {
     @Autowired
     QuestionService questionService;
 
-    //学生向后端发送选题申请
+    // 学生向后端发送选题申请
     @RequestMapping(value = "/StuChooseQues")
-    public String StuChooseQues(HttpServletRequest request,
-                                @RequestParam("questionid")int questionid,
-                                Map<String,Object> map){
+    public String StuChooseQues(HttpServletRequest request, @RequestParam("questionid") int questionid, Map<String, Object> map) {
         HttpSession session = request.getSession();
-        Object  userInfo = session.getAttribute("user");
+        Object userInfo = session.getAttribute("user");
         User user = (User) userInfo;
         int sno = user.getAccount();
-        boolean isChosen = questionStudentChooseService.chooseQuestion(questionid,sno);
-        session.setAttribute("hasChanged",true);
-        session.setAttribute("isChosen",isChosen);
-//        if(isChosen) //没用
-//            map.put("isChosen",1);
-//        else
-//            map.put("isChosen",0);
+        boolean isChosen = questionStudentChooseService.chooseQuestion(questionid, sno);
+        session.setAttribute("hasChanged", true);
+        session.setAttribute("isChosen", isChosen);
 
         return "forward:/StuQuesDetails";
     }
 
-    //学生向后端发送选题申请
+    // 学生向后端发送选题申请
     @RequestMapping(value = "/StuChooseQuesMobile")
-    public String StuChooseQuesMobile(HttpServletRequest request,
-                                @RequestParam("questionid")int questionid,
-                                Map<String,Object> map){
+    public String StuChooseQuesMobile(HttpServletRequest request, @RequestParam("questionid") int questionid, Map<String, Object> map) {
         HttpSession session = request.getSession();
-        Object  userInfo = session.getAttribute("user");
+        Object userInfo = session.getAttribute("user");
         User user = (User) userInfo;
         int sno = user.getAccount();
-        boolean isChosen = questionStudentChooseService.chooseQuestion(questionid,sno);
-        //不确定能否直接请求转发成功，可能有bug
+        boolean isChosen = questionStudentChooseService.chooseQuestion(questionid, sno);
+        // 不确定能否直接请求转发成功，可能有bug
         return "forward:/StuQuesDetailsMobile";
     }
 
-
-
-    //学生所有的选题信息
+    // 学生所有的选题信息
     @RequestMapping(value = "/StuChoice")
-    public String StuChoice(HttpServletRequest request,
-                            Map<String,Object> map){
-        HttpSession session =  request.getSession();
+    public String StuChoice(HttpServletRequest request, Map<String, Object> map) {
+        HttpSession session = request.getSession();
         Object user = session.getAttribute("user");
-        int sno = ((User)user).getAccount();
+        int sno = ((User) user).getAccount();
         List<QuestionStudentChoose> questionStudentChooses = questionStudentChooseService.getChoiceBySno(sno);
         List<Question> questions = new ArrayList<>();
-        for(int i=0;i<questionStudentChooses.size();i++){
+        for (int i = 0; i < questionStudentChooses.size(); i++) {
             questions.add(questionService.getSingleQuestionByQuestionid(questionStudentChooses.get(i).getQuestionid()));
         }
-        map.put("quesInfos",questions);
+        map.put("quesInfos", questions);
         return "StuChoice";
     }
 
-    //学生所有的选题信息
+    // 学生所有的选题信息
     @RequestMapping(value = "/StuChoiceMobile")
-    public String StuChoiceMobile(HttpServletRequest request,
-                            Map<String,Object> map){
-        HttpSession session =  request.getSession();
+    public String StuChoiceMobile(HttpServletRequest request, Map<String, Object> map) {
+        HttpSession session = request.getSession();
         Object user = session.getAttribute("user");
-        int sno = ((User)user).getAccount();
+        int sno = ((User) user).getAccount();
         List<QuestionStudentChoose> questionStudentChooses = questionStudentChooseService.getChoiceBySno(sno);
         List<Question> questions = new ArrayList<>();
-        for(int i=0;i<questionStudentChooses.size();i++){
+        for (int i = 0; i < questionStudentChooses.size(); i++) {
             questions.add(questionService.getSingleQuestionByQuestionid(questionStudentChooses.get(i).getQuestionid()));
         }
-        map.put("quesInfos",questions);
+        map.put("quesInfos", questions);
         return "StuChoiceMobile";
     }
 
+    // 以下皆为测试API
+    /*@GetMapping("cQ")
+    public void chooseQuestion(){
+        questionStudentChooseService.chooseQuestion(1906033518,11);
+    }
 
-//以下皆为测试API
-//    @GetMapping("cQ")
-//    public void chooseQuestion(){
-//        questionStudentChooseService.chooseQuestion(1906033518,11);
-//    }
-//
-//    @GetMapping("getQSCByQidSno")
-//    public void getChoiceByQidSno(){
-//        QuestionStudentChoose questionStudentChoose = questionStudentChooseService.getChoiceByQidSno(1907102645,11);
-//        System.out.println(questionStudentChoose);
-//    }
-//
-//    @GetMapping("getQSCBySno")
-//    public void getChoiceBySno(){
-//        List<QuestionStudentChoose> questionStudentChooses = questionStudentChooseService.getChoiceBySno(10);
-//        for(int i=0;i<questionStudentChooses.size();i++){
-//            System.out.println(questionStudentChooses.get(i));
-//        }
-//    }
-//
-//    @GetMapping("getQSCByTno")
-//    public void getChoiceByTno(){
-//        List<QuestionStudentChoose> questionStudentChooses = questionStudentChooseService.getChoiceByTno(1);
-//        for(int i=0;i<questionStudentChooses.size();i++){
-//            System.out.println(questionStudentChooses.get(i));
-//        }
-//    }
+    @GetMapping("getQSCByQidSno")
+    public void getChoiceByQidSno(){
+        QuestionStudentChoose questionStudentChoose = questionStudentChooseService.getChoiceByQidSno(1907102645,11);
+        System.out.println(questionStudentChoose);
+    }
 
+    @GetMapping("getQSCBySno")
+    public void getChoiceBySno(){
+        List<QuestionStudentChoose> questionStudentChooses = questionStudentChooseService.getChoiceBySno(10);
+        for(int i=0;i<questionStudentChooses.size();i++){
+            System.out.println(questionStudentChooses.get(i));
+        }
+    }
+
+    @GetMapping("getQSCByTno")
+    public void getChoiceByTno(){
+        List<QuestionStudentChoose> questionStudentChooses = questionStudentChooseService.getChoiceByTno(1);
+        for(int i=0;i<questionStudentChooses.size();i++){
+            System.out.println(questionStudentChooses.get(i));
+        }
+    }*/
 }

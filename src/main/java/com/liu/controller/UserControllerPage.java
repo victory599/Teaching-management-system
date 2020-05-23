@@ -4,7 +4,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 /**
- * @author 高谦
  * 用户表的相关页面（主要是修改密码界面)
  */
 @Controller

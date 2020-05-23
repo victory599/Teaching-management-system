@@ -7,8 +7,6 @@ import org.springframework.stereotype.Service;
 
 /**
  * 权限服务层
- *
- * @author 孟庆强
  */
 @Service
 public class PowerService {
@@ -30,7 +28,6 @@ public class PowerService {
 
     /**
      * 得到权限表当前状态
-     *
      * @return
      */
     public Power getStatus() {
@@ -39,8 +36,7 @@ public class PowerService {
 
     /**
      * 得到当前选课权限
-     *
-     * @return selectCourse值
+     * @return
      */
     public Boolean getSelectCourse() {
         power = getStatus();

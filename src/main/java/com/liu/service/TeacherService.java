@@ -17,15 +17,13 @@ import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 
-/**
- * @author 孟庆强
- */
 @Service
 public class TeacherService {
     @Autowired
     TeacherDao teacherDao;
     @Autowired
     UserDao userDao;
+
     public Teacher getTeacherByTno(Integer tno) {
         Teacher teacher = teacherDao.getByTno(tno);
         return teacher;
@@ -47,16 +45,14 @@ public class TeacherService {
 
     public void addTeacher(Teacher teacher) {
         teacherDao.insertTeacher(teacher);
-        if(teacher.getRank().equals("root")){
+        if (teacher.getRank().equals("root")) {
             UserAddView user = new UserAddView();
             user.setUserAccount(teacher.getTno());
             user.setUserPassword(teacher.getTno().toString());
             user.setUserType(2);
             user.setUserStatus(1);
             userDao.addUser(user);
-            System.out.println(user);
         }
-
     }
 
     public void updateTeacherById(Integer id, Teacher teacher) {
@@ -86,7 +82,6 @@ public class TeacherService {
         int lastRowNum = sheet.getLastRowNum();
         float tno = 0;
         float coid = 0;
-        System.out.println(sheet.getLastRowNum());
         for (int i = 1; i <= lastRowNum; i++) {
             HSSFRow row = sheet.getRow(i);
             teacher = new Teacher();
@@ -96,14 +91,11 @@ public class TeacherService {
             teacher.setEmail(row.getCell(4).toString());
             teacher.setPhone(row.getCell(3).toString());
             teacher.setOffice(row.getCell(6).toString());
-            System.out.println();
             teacher.setTno(Integer.parseInt((row.getCell(0).toString())));
             teacher.setRank(row.getCell(7).toString());
-            System.out.println(teacher);
+
             teachers.add(teacher);
         }
-//        teacherDao.insertTeacher();
-//        s(students);
         addTeachers(teachers);
         return true;
     }

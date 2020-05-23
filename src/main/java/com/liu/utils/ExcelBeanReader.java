@@ -26,13 +26,11 @@ public class ExcelBeanReader<T> {
         sheet = hssfWorkbook.getSheet(name);
     }
 
-    public void test() throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
+    /*public void test() throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
         ClassLoader classLoader = clazz.getClassLoader();
-//        classLoader.
         Constructor<T> constructor = clazz.getConstructor();
         T t = constructor.newInstance();
         Field[] declaredFields = clazz.getDeclaredFields();
         Method[] methods = clazz.getMethods();
-//        methods[0].invoke()
-    }
+    }*/
 }

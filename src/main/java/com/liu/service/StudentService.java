@@ -16,8 +16,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * @author 高谦
- * 学生表相应的服务。
+ * 学生表相关服务
  */
 @Service
 public class StudentService {
@@ -26,11 +25,9 @@ public class StudentService {
 
     /**
      * 根据学号获得学生信息
-     *
      * @param sno
      * @return
      */
-
     public Student getStudentBySno(Integer sno) {
         return studentDao.getBySno(sno);
     }
@@ -62,7 +59,6 @@ public class StudentService {
         HSSFWorkbook hssfWorkbook = null;
         Student student = null;
         List<Student> students = new LinkedList<>();
-//        students.g
         try {
             hssfWorkbook = new HSSFWorkbook(new FileInputStream(file));
         } catch (IOException e) {
@@ -72,8 +68,6 @@ public class StudentService {
         int lastRowNum = sheet.getLastRowNum();
         for (int i = 1; i <= lastRowNum; i++) {
             HSSFRow row = sheet.getRow(i);
-            System.out.println(row.getCell(10).toString());
-            System.out.println(row.getCell(1).toString());
             student = new Student(
                     Integer.parseInt(row.getCell(0).toString()),
                     row.getCell(1).toString(),
@@ -88,11 +82,8 @@ public class StudentService {
                     Integer.parseInt(row.getCell(8).toString())
             );
             students.add(student);
-            System.out.println(student);
         }
         saveStudents(students);
-//        sheet.getRow()
         return true;
     }
-
 }

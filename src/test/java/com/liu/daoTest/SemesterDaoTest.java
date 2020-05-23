@@ -36,7 +36,8 @@ public class SemesterDaoTest {
 
     @Test
     public void getSemesterMostId() {
-        List<Semester> currentSemester = semesterDao.getSemesterMostId();
+        //List<Semester> currentSemester = semesterDao.getSemesterMostId();
+        Semester currentSemester = semesterDao.getSemesterMostId();
         System.out.println(currentSemester);
     }
 }

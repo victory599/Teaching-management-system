@@ -6,11 +6,6 @@ import com.liu.vo.UserAddView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-/**
- * @author  高谦
- * 数据表 user 服务层。
- * 以下代码还可以继续优化。
- */
 @Service
 public class UserService {
     @Autowired
@@ -19,39 +14,38 @@ public class UserService {
     /**
      * 根据账户名和密码来调用数据库查询操作来实现登录
      * @param account  账户
-     * @param password  密码
+     * @param password 密码
      * @return
      */
-    public User LoginFun(String account,String password) {
-
-        if(password==null||account==null)
+    public User LoginFun(String account, String password) {
+        if (password == null || account == null)
             return null;
-        User user=new User();
+        User user = new User();
         user.setAccount(Integer.parseInt(account));
         user.setPassword(password);
-        User Result=userDao.Login(user);
-        if(Result!=null){
+        User Result = userDao.Login(user);
+        if (Result != null) {
             return Result;
-        }
-        else{
+        } else {
             return null;
         }
     }
-    public Boolean upDateUserPassword(UserAddView userAddView,String newPassword){
+
+    public Boolean upDateUserPassword(UserAddView userAddView, String newPassword) {
         User user = new User();
         user.setAccount(userAddView.getUserAccount());
         user.setPassword(userAddView.getUserPassword());
         User login = userDao.Login(user);
-        if(login==null) {
+        if (login == null) {
             return false;
-        } else{
+        } else {
             userAddView.setUserPassword(newPassword);
             userDao.updateUserPassword(userAddView);
             return true;
         }
     }
 
-    public User getByAccount(Integer account){
+    public User getByAccount(Integer account) {
         return userDao.getByAccount(account);
     }
 }

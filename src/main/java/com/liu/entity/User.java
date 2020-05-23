@@ -2,7 +2,7 @@ package com.liu.entity;
 import lombok.Data;
 
 /**
- * 登录的用户(类别：学生/老师)
+ * 登录的用户(类别：学生/老师/管理员)
  * 用于存储教师登录的工号，学生登录的学号
  */
 @Data

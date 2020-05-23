@@ -12,10 +12,10 @@ public class MajorService {
     @Autowired
     MajorDao majorDao;
 
-    public ResponseMessage getMajorNamesByCollegeName(String collegeName){
+    public ResponseMessage getMajorNamesByCollegeName(String collegeName) {
         List<String> data = majorDao.getMajorNamesByCollegeName(collegeName);
-        ResponseMessage message=ResponseMessage.getMessage(data!=null,ResponseMessage.SUCCESS,
-                "查询成功！", ResponseMessage.EmptyDate,"查询结果为空！");
+        ResponseMessage message = ResponseMessage.getMessage(data != null, ResponseMessage.SUCCESS,
+                "查询成功！", ResponseMessage.EmptyDate, "查询结果为空！");
         message.setData(data);
         return message;
     }

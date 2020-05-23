@@ -11,10 +11,6 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- * @author 孟庆强
- */
-
 @RestController
 public class PowerControllerApi {
     @Autowired
@@ -22,7 +18,6 @@ public class PowerControllerApi {
 
     /**
      * 用于调试所有权限信息
-     *
      * @return Power
      */
     @GetMapping("/getPowerStatus")
@@ -32,7 +27,6 @@ public class PowerControllerApi {
 
     /**
      * 获取学籍异动权限
-     *
      * @return Boolean
      */
     @GetMapping("/getPowerAbnormal")
@@ -42,7 +36,6 @@ public class PowerControllerApi {
 
     /**
      * 获取成绩录入权限
-     *
      * @return Boolean
      */
     @GetMapping("/getPowerScore")
@@ -52,7 +45,6 @@ public class PowerControllerApi {
 
     /**
      * 获取选课权限
-     *
      * @return Boolean
      */
     @GetMapping("/getPowerSelectCourse")
@@ -62,7 +54,6 @@ public class PowerControllerApi {
 
     /**
      * 打开选课权限
-     *
      * @return Boolean
      */
     @RequestMapping("/openPowerSelectCourse")
@@ -78,7 +69,6 @@ public class PowerControllerApi {
 
     /**
      * 关闭选课权限
-     *
      * @return Boolean
      */
     @RequestMapping("/closePowerSelectCourse")
@@ -94,7 +84,6 @@ public class PowerControllerApi {
 
     /**
      * 打开学籍异动权限
-     *
      * @return Boolean
      */
     @RequestMapping("/closePowerAbnormal")
@@ -110,7 +99,6 @@ public class PowerControllerApi {
 
     /**
      * 关闭学籍异动权限
-     *
      * @return Boolean
      */
     @RequestMapping("/openPowerAbnormal")
@@ -126,7 +114,6 @@ public class PowerControllerApi {
 
     /**
      * 打开成绩录入权限
-     *
      * @return Boolean
      */
     @RequestMapping("/openPowerScore")
@@ -141,8 +128,7 @@ public class PowerControllerApi {
     }
 
     /**
-     * 打开关闭录入权限
-     *
+     * 关闭成绩录入权限
      * @return Boolean
      */
     @RequestMapping("/closePowerScore")

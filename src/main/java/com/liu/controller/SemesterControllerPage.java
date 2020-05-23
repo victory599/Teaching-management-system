@@ -17,6 +17,7 @@ import java.util.*;
 public class SemesterControllerPage {
     @Autowired
     SemesterService semesterService;
+
     public boolean checkPower(HttpServletRequest request) {
         User user = (User) request.getSession().getAttribute("user");
         if (user == null) {
@@ -24,22 +25,20 @@ public class SemesterControllerPage {
         }
         return user.getType() == 2;
     }
+
     @RequestMapping("/GoSemesterManage")
-    public String semesterManage(Map<String, Object> parMap, HttpServletRequest request) {
+    public String semesterManage(Map<String, Object> model, HttpServletRequest request) {
         if (checkPower(request) == false) {
             return "error";
         }
         Semester currentSemesterInfo = semesterService.getCurrentSemesterInfo();
         request.setAttribute("currentSemesterInfo", currentSemesterInfo);
-//        parMap.put("currentSemesterInfo", currentSemesterInfo);
         return "SemesterManage";
     }
 
     @PostMapping("/CreateNewSemester")
-    public String createNewSemester(@RequestParam("semesterid") Integer semesterId,
-                                    @RequestParam("semester") String semester,
-                                    @RequestParam("start") Date start,
-                                    @RequestParam("end") Date end,HttpServletRequest request) {
+    public String createNewSemester(@RequestParam("semesterid") Integer semesterId, @RequestParam("semester") String semester,
+                                    @RequestParam("start") Date start, @RequestParam("end") Date end, HttpServletRequest request) {
         System.out.println(semesterId);
         System.out.println(semester);
         System.out.println(start);
@@ -58,5 +57,4 @@ public class SemesterControllerPage {
         semesterService.addSemester(new Semester(semesterId, new Integer(startYear).toString(), new Integer(endYear).toString(), semester));
         return "forward:/GoSemesterManage";
     }
-
 }

@@ -18,7 +18,8 @@ public interface SemesterDao {
 
     public List<Semester> getAll();
 
-    public List<Semester> getSemesterMostId();
+    //public List<Semester> getSemesterMostId();
+    public Semester getSemesterMostId();
 
     /**
      * 查询特定的学期

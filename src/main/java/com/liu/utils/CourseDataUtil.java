@@ -4,9 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @author 高谦
- * 排课表时间字符串解析的类。
- * 检查检查有无冲突
+ * 解析排课表的时间字符串，检查有无冲突
  */
 public class CourseDataUtil{
     private Integer startweek;
@@ -16,16 +14,14 @@ public class CourseDataUtil{
     private Integer endStep;
 
     /**
-     * 构造函数，不过貌似这个构造函数没有什么卵用。
+     * 构造函数
      * @param startweek  教学开始周
      * @param endweek  教学结束周
      * @param week  在星期几上课
      * @param startStep  从第几节课开始上
      * @param endStep  上到第几节课
      */
-    public CourseDataUtil(Integer startweek,
-                          Integer endweek, Integer week,
-                          Integer startStep, Integer endStep) {
+    public CourseDataUtil(Integer startweek, Integer endweek, Integer week, Integer startStep, Integer endStep) {
         this.startweek = startweek;
         this.endweek = endweek;
         this.week = week;
@@ -74,14 +70,13 @@ public class CourseDataUtil{
     }
 
     /**
-     * // "(1-4,5,1-3);(8-10,4,11-13)"  ->  ["(1-4,5,1-3)","(8-10,4,11-13)"]
+     * "(1-4,5,1-3);(8-10,4,11-13)"  ->  ["(1-4,5,1-3)","(8-10,4,11-13)"]
      * 判断是不是冲突了！
      * @param courseTime
      * @param courseDataStrList  数据库中读到时间 字符串数组
      * @return
      */
     public static Boolean isConflict(String courseTime, List<String> courseDataStrList){
-
         // 将数据库中读到的数据 解析成为多个 courseDataUtil 对象，生成一个列表。
         List<CourseDataUtil> dataBaseTiems=new ArrayList<>();
         for(String coursetime:courseDataStrList){

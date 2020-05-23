@@ -9,26 +9,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @author 高谦
- * 学期表服务层
- * <p>
- * 下面的接口请改为从数据库中获取。
- * @implement 孟庆强
+ * 学期表业务功能
  */
-
 @Service
 public class SemesterService {
     @Autowired
     SemesterDao semesterDao;
 
     public Semester getCurrentSemesterInfo() {
-        List<Semester> all = semesterDao.getSemesterMostId();
-        return all.get(0);
+        Semester semester = semesterDao.getSemesterMostId();
+        return semester;
     }
 
     public Integer getCurrentSemesterId() {
-        List<Semester> all = semesterDao.getSemesterMostId();
-        return all.get(0).getSemesterId();
+        /*List<Semester> all = semesterDao.getSemesterMostId();
+        return all.get(0).getSemesterId();*/
+        Semester semester = semesterDao.getSemesterMostId();
+        return semester.getSemesterId();
     }
 
     public List<String> getSemesterList() {
@@ -46,32 +43,24 @@ public class SemesterService {
     }
 
     /**
-     * @author 高谦
-     * 用于根据条件查询学期，不要删！
-     * @param start  学年起始年
-     * @param semester  学期 【1,2,3】
-     * @return  返回特定的学期
+     * 根据条件查询学期
+     * @param start    学年起始年
+     * @param semester 学期 【1,2,3】
+     * @return 返回特定的学期
      */
-    public Semester getSemesterByStartAndSemester(Integer start,Integer semester){
-        Semester parm=new Semester();
+    public Semester getSemesterByStartAndSemester(Integer start, Integer semester) {
+        Semester parm = new Semester();
         parm.setStart(start.toString());
         parm.setSemester(semester.toString());
-        Semester res=semesterDao.getSemesterByStartAndSemester(parm);
+        Semester res = semesterDao.getSemesterByStartAndSemester(parm);
         return res;
     }
 
-    /**
-     * @author 王艺琳
-     * @param semesterId  学期id
-     * @return
-     */
     public Semester getSemesterById(Integer semesterId) {
-        return  semesterDao.getSemesterById(semesterId);
+        return semesterDao.getSemesterById(semesterId);
     }
 
-
-    public void addSemester(Semester semester){
+    public void addSemester(Semester semester) {
         semesterDao.insertSemester(semester);
     }
-
 }

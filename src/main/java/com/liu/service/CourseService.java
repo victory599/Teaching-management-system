@@ -12,31 +12,28 @@ public class CourseService {
     @Autowired
     CourseDao courseDao;
 
-    public List<Course> getAll(){
+    public List<Course> getAll() {
         return courseDao.getAll();
     }
 
-    public Course getByName(String cno){
-        if(cno!=null){
+    public Course getByName(String cno) {
+        if (cno != null) {
             return null;
-        }
-        else{
+        } else {
             return courseDao.getByCno(cno);
         }
     }
 
     /**
-     * @author 王艺琳
      * 通过课程名称获取课程号
      * @param cname
      * @return
      */
-    public Integer getCnoByCname(String cname){
-        if(cname==null){
+    public Integer getCnoByCname(String cname) {
+        if (cname == null) {
             return null;
-        }
-        else{
-            System.out.println("!!!"+courseDao.getCnoByCname(cname));
+        } else {
+            System.out.println("!!!" + courseDao.getCnoByCname(cname));
             return courseDao.getCnoByCname(cname);
         }
     }
