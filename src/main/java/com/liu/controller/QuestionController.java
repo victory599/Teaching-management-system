@@ -139,7 +139,7 @@ public class QuestionController {
     }
 
     @RequestMapping("/TeaAddQues")
-    public String TeaAddQues( HttpServletRequest request, Map<String, Object> map) {
+    public String TeaAddQues(HttpServletRequest request, Map<String, Object> map) {
         HttpSession session = request.getSession();
         Object isAddedObject = session.getAttribute("isAdded");
         Object hasChangedObject = session.getAttribute("hasChangedIsAdded");

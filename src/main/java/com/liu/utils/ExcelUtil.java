@@ -73,7 +73,6 @@ public class ExcelUtil {
             Sheet sheet = wb.getSheetAt(0);
             // 获取sheet的行数
             int rows = sheet.getPhysicalNumberOfRows();
-            System.out.println(rows);
             for (int i = 0; i < rows; i++) {
                 // 过滤表头行
                 if (i == 0) {

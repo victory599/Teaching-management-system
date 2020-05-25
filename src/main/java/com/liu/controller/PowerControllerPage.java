@@ -66,6 +66,7 @@ public class PowerControllerPage {
         }
         // 获取文件名
         String fileName = multfile.getOriginalFilename();
+
         // 获取文件前缀
         String prefix = fileName.substring(fileName.lastIndexOf("."));
         // 用uuid作为文件名，防止生成的临时文件重复
