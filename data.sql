@@ -1,19 +1,3 @@
-/*
- Navicat Premium Data Transfer
-
- Source Server         : mysql8：3308
- Source Server Type    : MySQL
- Source Server Version : 80013
- Source Host           : localhost:3308
- Source Schema         : school
-
- Target Server Type    : MySQL
- Target Server Version : 80013
- File Encoding         : 65001
-
- Date: 13/05/2019 20:04:12
-*/
-
 SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
 
