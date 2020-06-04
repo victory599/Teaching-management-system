@@ -22,7 +22,8 @@
             <label>当前状态: 关闭</label>
             <a data-role="button" @click="openSelectCourse()"> 开启</a>
         </div>
-        <h3>初级录入</h3>
+
+        <h3>成绩录入</h3>
         <div v-if="scoresta">
             <label>当前状态: 开启</label>
             <a data-role="button" @click="closeScore()"> 关闭</a>
@@ -32,7 +33,7 @@
             <a data-role="button" @click="openScore()"> 开启</a>
         </div>
 
-        <h3>学籍异动</h3>
+        <h3>学籍异动选课</h3>
         <div v-if="abnormalsta">
             <label>当前状态: 开启</label>
             <a data-role="button" @click="closeAbnormal()"> 关闭</a>
@@ -41,12 +42,11 @@
             <label>当前状态: 关闭</label>
             <a data-role="button" @click="openAbnormal()"> 开启</a>
         </div>
-
     </div>
 
     <!-- 底部 -->
     <div data-role="footer" data-transition="fixed">
-        <h1>版权所有</h1>
+        <h1>版权所有© 工学院 计科1602班 刘 毕业设计</h1>
     </div>
 </div>
 </body>
@@ -59,7 +59,6 @@
             abnormalsta: [[${abnormal}]],
         },
         methods: {
-
             openSelectCourse: function () {
                 window.location = "/OpenSelectCourse"
             },

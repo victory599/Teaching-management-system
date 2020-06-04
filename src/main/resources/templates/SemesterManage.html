@@ -3,16 +3,13 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <div th:replace="common/backstageNavigator.html :: head"></div>
-
 </head>
-
 <body>
 <div th:replace="common/backstageNavigator.html :: banner"></div>
 <div class="container-fluid" id="SM">
     <div class="row">
         <div th:replace="common/backstageNavigator.html :: navi"></div>
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
-
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
                 <h1 class="h2">当前学期</h1>
             </div>
@@ -56,8 +53,7 @@
                         <!--<option value="第2学期">第2学期</option>-->
                         <!--<option value="第3学期">第3学期</option>-->
                         <!--</select>-->
-                        <input type="text" th:name="semesterid" c-model="semesterid" placeholder="学期id"
-                               class="form-control mr-sm-2">
+                        <input type="text" th:name="semesterid" c-model="semesterid" placeholder="学期id" class="form-control mr-sm-2">
                     </div>
                 </div>
                 <h1></h1>
@@ -115,13 +111,11 @@
                     </div>
                 </div>
             </div>
-
         </main>
     </div>
 </div>
 
 <script>
-
     var sm = new Vue({
         el: '#SM',
         data: {
@@ -171,10 +165,7 @@
 <script>
     feather.replace()
 </script>
-
 <!-- Graphs -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
-
 </body>
-
 </html>

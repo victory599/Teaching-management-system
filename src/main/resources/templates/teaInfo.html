@@ -10,7 +10,6 @@
 <div data-role="page" id="teaInfoVue">
     <!--头部-->
     <div th:replace="common/mobileBackstageNavigator.html::header"></div>
-
     <!--主部-->
     <div role="main" class="ui-content" id="stuVue">
         <h3>老师信息</h3>
@@ -79,8 +78,7 @@
             // this.getpage()
             // this.getpage()
             // location.reload()
-        }
-        ,
+        },
         data: {
             allteachers: [[${allTeacher}]],
             pageteachers: [],
@@ -89,7 +87,6 @@
             pagenum: null,
             currentpage: 0,
         },
-
         methods: {
             getpage: function () {
                 this.pagenum = Math.ceil(this.allteachers.length / this.pagesize) || 1;

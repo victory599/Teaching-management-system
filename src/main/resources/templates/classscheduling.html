@@ -32,10 +32,11 @@
     <div class="row">
         <div th:replace="common/backstageNavigator.html :: navi"></div>
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
-            <!--下面是课程表-->
+            <!-- 课程表查询 -->
             <div class="course_form">
                 <fieldset><legend><h2>课程表查询</h2></legend>
                         <h5>学年：</h5><select v-model="table_year" style="height:25px;width:164px">
+                            <option value="2019-2020学年">2020-2021学年</option>
                             <option value="2019-2020学年">2019-2020学年</option>
                             <option value="2018-2019学年">2018-2019学年</option>
                             <option value="2017-2018学年">2017-2018学年</option>
@@ -68,7 +69,8 @@
                 </fieldset>
                 <br>
             </div>
-            <!--下面是课程安排-->
+
+            <!-- 课程安排 -->
             <div>
                 <input type="button" class="button" style="float: right;width: 70px;margin-right: 15px;margin-top: 15px" value="删除课程" v-on:click="op()">
                 <input type="button" class="button" style="float: right;width: 70px;margin-top: 15px" value="添加课程" v-on:click="open()">
@@ -76,6 +78,7 @@
                     <div style="border: 2px seashell">
                         <h3 class="h">添加课程</h3><hr>
                         <div class="insertdiv"><li class="li_style0">学 年 : </li><select class="insert" style="height:25px;width:164px" id = "insert_year" v-model="insert_year">
+                            <option value="2019-2020学年">2020-2021学年</option>
                             <option value="2019-2020学年">2019-2020学年</option>
                             <option value="2018-2019学年">2018-2019学年</option>
                             <option value="2017-2018学年">2017-2018学年</option>
@@ -94,17 +97,17 @@
                             <option value="3">大三</option>
                             <option value="4">大四</option>
                         </select></div>
-                        <div class="insertdiv"><li class="li_style0">专 业 : </li><input class="insert"style="height:25px;width:164px" id="insert_majorName"name="专业" type="text" v-model="insert_majorName" />
+                        <div class="insertdiv"><li class="li_style0">专 业 : </li><input class="insert"style="height:25px;width:164px" id="insert_majorName" name="专业" type="text" v-model="insert_majorName" />
                         </div>
-                        <div class="insertdiv"><li class="li_style0">课程号 : </li><input class="insert"style="height:25px;width:164px" id="insert_cno"name="课程号" type="text" v-model="insert_cno"/>
+                        <div class="insertdiv"><li class="li_style0">课程号 : </li><input class="insert"style="height:25px;width:164px" id="insert_cno" name="课程号" type="text" v-model="insert_cno"/>
                         </div>
-                        <div class="insertdiv"><li class="li_style0">课程名 : </li><input class="insert"style="height:25px;width:164px" id="insert_cName"name="课程名" type="text" v-model="insert_cName"/>
+                        <div class="insertdiv"><li class="li_style0">课程名 : </li><input class="insert"style="height:25px;width:164px" id="insert_cName" name="课程名" type="text" v-model="insert_cName"/>
                         </div>
-                        <div class="insertdiv"><li class="li_style0">开课学院: </li><input class="insert"style="height:25px;width:164px" id="insert_college"name="开课学院" type="text" v-model="insert_college"/>
+                        <div class="insertdiv"><li class="li_style0">开课学院: </li><input class="insert"style="height:25px;width:164px" id="insert_college" name="开课学院" type="text" v-model="insert_college"/>
                         </div>
-                        <div class="insertdiv"><li class="li_style0">课程描述: </li><input class="insert"style="height:25px;width:164px" id="insert_description"name="课程描述" type="text"  v-model="insert_description"/>
+                        <div class="insertdiv"><li class="li_style0">课程描述: </li><input class="insert"style="height:25px;width:164px" id="insert_description" name="课程描述" type="text" v-model="insert_description"/>
                         </div>
-                        <div class="insertdiv"><li class="li_style0">容 量 : </li><input class="insert"style="height:25px;width:164px" id="insert_capacity"name="容量" type="text" v-model="insert_capacity"/>
+                        <div class="insertdiv"><li class="li_style0">容 量 : </li><input class="insert"style="height:25px;width:164px" id="insert_capacity" name="容量" type="text" v-model="insert_capacity"/>
                         </div>
                     </div><hr>
                     <div style="height: 25px">
@@ -119,6 +122,7 @@
                     </div>
                     <div class="insertdiv">
                         <li class="li_style0">开课学年: </li><select  style="height:25px;width:164px" id = "deleteYear" v-model="deleteYear" name="开课学年">
+                        <option value="2019-2020学年">2020-2021学年</option>
                         <option value="2019-2020学年">2019-2020学年</option>
                         <option value="2018-2019学年">2018-2019学年</option>
                         <option value="2017-2018学年">2017-2018学年</option>
@@ -153,6 +157,7 @@
                 <div class="course_mag">
                     <fieldset><legend><h2>课程安排</h2></legend>
                         <h5>学年：</h5><select id = 'change_year' v-model="input_year" style="height:25px;width:164px">
+                            <option value="2019-2020学年">2020-2021学年</option>
                             <option value="2019-2020学年">2019-2020学年</option>
                             <option value="2018-2019学年">2018-2019学年</option>
                             <option value="2017-2018学年">2017-2018学年</option>
@@ -205,165 +210,162 @@
                 </div>
             </div>
             <dialog class="Dialog" id="Dialog">
-                    <h3 class="h">课程安排</h3>
-                    <li class="li_style">教师安排</li>
-                        <h5>教师: </h5>
-                        <input type="button" id="teacherName" class="BBT" value="未安排" />
-                    <div id="div0">
-                        <input type="search"  class="header_search" id="oneTeacher" placeholder="输入教师工号或名字"/>
-                        <input type="button" class="button0" id="btn3"  value="查询"  v-on:click="searchTeacher()">
-                         <br>
-                         <div id ="div01" style="display:none">
-                            <table class="Table" >
-                                <thead>
-                                <tr>
-                                    <td align="center" valign="middle">工号</td>
-                                    <td align="center" valign="middle">名字</td>
-                                    <td align="center" valign="middle">性别</td>
-                                    <td align="center" valign="middle">操作</td>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <!--放后台查询数据返回的结果-->
-                                <tr v-for="teacher in allTeachers">
-                                    <td>{{teacher.tno}}</td>
-                                    <td>{{teacher.tname}}</td>
-                                    <td>{{teacher.sex}}</td>
-                                    <td>
-                                        <input type="button" class="button1" id="oneTeacherButton" value="课程安排" v-on:click="eachTeacher(teacher)">
-                                    </td>
-                                </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div><hr>
-                    <li class="li_style">教室安排</li>
-                    <h5>教室: </h5>
-                    <input type="button" id="classroomName" class="BBT" value="未安排" />
-                    <div id="div1">
-                        <input type="search" class="header_search" id="classRoom" placeholder="输入教室编号"/>
-                        <input type="button" class="button0" id="btn4"  value="确定" v-on:click="classRoom()">
-                    </div><br>
-                    <div id="div2"><hr>
-                        <li class="li_style">时间安排</li>
-                        <div style="text-align: right">
-                            <input type="button" class="button" style="width: 110px" id="btn5" value="添加其它时间段" v-on:click="addTime()" >
-                        </div>
-                        <div id="allTime0">
-                            <form  method="get">
-                                <label><h5>周数:</h5>
-                                    <select name="time_start" class="select_style" onchange="sel()">
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
-                                        <option value="4">4</option>
-                                        <option value="5">5</option>
-                                        <option value="6">6</option>
-                                        <option value="7">7</option>
-                                        <option value="8">8</option>
-                                        <option value="9">9</option>
-                                        <option value="10">10</option>
-                                        <option value="11">11</option>
-                                        <option value="12">12</option>
-                                        <option value="13">13</option>
-                                        <option value="14">14</option>
-                                        <option value="15">15</option>
-                                        <option value="16">16</option>
-                                        <option value="17">17</option>
-                                        <option value="18">18</option>
-                                        <option value="19">19</option>
-                                        <option value="20">20</option>
-                                    </select>
-                                </label>
-                                <label><h5>至</h5>
-                                    <select  name="time_end" class="select_style">
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
-                                        <option value="4">4</option>
-                                        <option value="5">5</option>
-                                        <option value="6">6</option>
-                                        <option value="7">7</option>
-                                        <option value="8">8</option>
-                                        <option value="9">9</option>
-                                        <option value="10">10</option>
-                                        <option value="11">11</option>
-                                        <option value="12">12</option>
-                                        <option value="13">13</option>
-                                        <option value="14">14</option>
-                                        <option value="15">15</option>
-                                        <option value="16">16</option>
-                                        <option value="17">17</option>
-                                        <option value="18">18</option>
-                                        <option value="19">19</option>
-                                        <option value="20">20</option>
-                                    </select>
-                                </label>
-                                <label><h5>星期:</h5>
-                                    <select name="week" class="select_style">
-                                        <option value="1">星期一</option>
-                                        <option value="2">星期二</option>
-                                        <option value="3">星期三</option>
-                                        <option value="4">星期四</option>
-                                        <option value="5">星期五</option>
-                                        <option value="6">星期六</option>
-                                        <option value="7">星期日</option>
-                                    </select>
-                                </label>
-                                <label><h5>节数:</h5>
-                                    <select name="section1" class="select_style">
-                                        <option value="1">第一节</option>
-                                        <option value="2">第二节</option>
-                                        <option value="3">第三节</option>
-                                        <option value="4">第四节</option>
-                                        <option value="5">第五节</option>
-                                        <option value="6">第六节</option>
-                                        <option value="7">第七节</option>
-                                        <option value="8">第八节</option>
-                                        <option value="9">第九节</option>
-                                        <option value="10">第十节</option>
-                                        <option value="11">第十一节</option>
-                                        <option value="12">第十二节</option>
-                                        <option value="13">第十三节</option>
-                                    </select>
-                                </label>
-                                <label><h5>至</h5>
-                                    <select  name="section2" class="select_style">
-                                        <option value="1">第一节</option>
-                                        <option value="2">第二节</option>
-                                        <option value="3">第三节</option>
-                                        <option value="4">第四节</option>
-                                        <option value="5">第五节</option>
-                                        <option value="6">第六节</option>
-                                        <option value="7">第七节</option>
-                                        <option value="8">第八节</option>
-                                        <option value="9">第九节</option>
-                                        <option value="10">第十节</option>
-                                        <option value="11">第十一节</option>
-                                        <option value="12">第十二节</option>
-                                        <option value="13">第十三节</option>
-                                    </select>
-                                </label>
-                                </form>
-                        </div>
+                <h3 class="h">课程安排</h3>
+                <li class="li_style">教师安排</li>
+                    <h5>教师: </h5>
+                    <input type="button" id="teacherName" class="BBT" value="未安排" />
+                <div id="div0">
+                    <input type="search"  class="header_search" id="oneTeacher" placeholder="输入教师工号或名字"/>
+                    <input type="button" class="button0" id="btn3"  value="查询"  v-on:click="searchTeacher()">
+                     <br>
+                     <div id ="div01" style="display:none">
+                        <table class="Table" >
+                            <thead>
+                            <tr>
+                                <td align="center" valign="middle">工号</td>
+                                <td align="center" valign="middle">名字</td>
+                                <td align="center" valign="middle">性别</td>
+                                <td align="center" valign="middle">操作</td>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <!--放后台查询数据返回的结果-->
+                            <tr v-for="teacher in allTeachers">
+                                <td>{{teacher.tno}}</td>
+                                <td>{{teacher.tname}}</td>
+                                <td>{{teacher.sex}}</td>
+                                <td>
+                                    <input type="button" class="button1" id="oneTeacherButton" value="课程安排" v-on:click="eachTeacher(teacher)">
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
                     </div>
-                    <hr><br>
-                    <div id="div5" align="right" style=" padding-left:100px">
-                        <input class="button" type="button" value="确认" v-on:click="addAll()"/>
-                        <a style="padding-right:100px"></a>
-                        <input class="button" type="button" value="取消" v-on:click="deleteCourse()"/>
+                </div><hr>
+                <li class="li_style">教室安排</li>
+                <h5>教室: </h5>
+                <input type="button" id="classroomName" class="BBT" value="未安排" />
+                <div id="div1">
+                    <input type="search" class="header_search" id="classRoom" placeholder="输入教室编号"/>
+                    <input type="button" class="button0" id="btn4"  value="确定" v-on:click="classRoom()">
+                </div><br>
+                <div id="div2"><hr>
+                    <li class="li_style">时间安排</li>
+                    <div style="text-align: right">
+                        <input type="button" class="button" style="width: 110px" id="btn5" value="添加其它时间段" v-on:click="addTime()" >
                     </div>
-                </dialog>
-
+                    <div id="allTime0">
+                        <form  method="get">
+                            <label><h5>周数:</h5>
+                                <select name="time_start" class="select_style" onchange="sel()">
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                    <option value="10">10</option>
+                                    <option value="11">11</option>
+                                    <option value="12">12</option>
+                                    <option value="13">13</option>
+                                    <option value="14">14</option>
+                                    <option value="15">15</option>
+                                    <option value="16">16</option>
+                                    <option value="17">17</option>
+                                    <option value="18">18</option>
+                                    <option value="19">19</option>
+                                    <option value="20">20</option>
+                                </select>
+                            </label>
+                            <label><h5>至</h5>
+                                <select  name="time_end" class="select_style">
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                    <option value="10">10</option>
+                                    <option value="11">11</option>
+                                    <option value="12">12</option>
+                                    <option value="13">13</option>
+                                    <option value="14">14</option>
+                                    <option value="15">15</option>
+                                    <option value="16">16</option>
+                                    <option value="17">17</option>
+                                    <option value="18">18</option>
+                                    <option value="19">19</option>
+                                    <option value="20">20</option>
+                                </select>
+                            </label>
+                            <label><h5>星期:</h5>
+                                <select name="week" class="select_style">
+                                    <option value="1">星期一</option>
+                                    <option value="2">星期二</option>
+                                    <option value="3">星期三</option>
+                                    <option value="4">星期四</option>
+                                    <option value="5">星期五</option>
+                                    <option value="6">星期六</option>
+                                    <option value="7">星期日</option>
+                                </select>
+                            </label>
+                            <label><h5>节数:</h5>
+                                <select name="section1" class="select_style">
+                                    <option value="1">第一节</option>
+                                    <option value="2">第二节</option>
+                                    <option value="3">第三节</option>
+                                    <option value="4">第四节</option>
+                                    <option value="5">第五节</option>
+                                    <option value="6">第六节</option>
+                                    <option value="7">第七节</option>
+                                    <option value="8">第八节</option>
+                                    <option value="9">第九节</option>
+                                    <option value="10">第十节</option>
+                                    <option value="11">第十一节</option>
+                                    <option value="12">第十二节</option>
+                                    <option value="13">第十三节</option>
+                                </select>
+                            </label>
+                            <label><h5>至</h5>
+                                <select  name="section2" class="select_style">
+                                    <option value="1">第一节</option>
+                                    <option value="2">第二节</option>
+                                    <option value="3">第三节</option>
+                                    <option value="4">第四节</option>
+                                    <option value="5">第五节</option>
+                                    <option value="6">第六节</option>
+                                    <option value="7">第七节</option>
+                                    <option value="8">第八节</option>
+                                    <option value="9">第九节</option>
+                                    <option value="10">第十节</option>
+                                    <option value="11">第十一节</option>
+                                    <option value="12">第十二节</option>
+                                    <option value="13">第十三节</option>
+                                </select>
+                            </label>
+                        </form>
+                    </div>
+                </div>
+                <hr><br>
+                <div id="div5" align="right" style=" padding-left:100px">
+                    <input class="button" type="button" value="确认" v-on:click="addAll()"/>
+                    <a style="padding-right:100px"></a>
+                    <input class="button" type="button" value="取消" v-on:click="deleteCourse()"/>
+                </div>
+            </dialog>
         </main>
-
     </div>
 </div>
 
-<script type="text/javascript" th:inline="javascript" >
+<script type="text/javascript" th:inline="javascript">
     var app = new Vue({
         el:'#classscheduling',
-
         data:{
             array:[],
             i:1,
@@ -407,40 +409,39 @@
             deleteMajorName:"",
             deleteGrade:"",
         },
-        methods:{
-
-            open:function(){
-             dialog0.showModal();
+        methods: {
+            open: function () {
+                dialog0.showModal();
             },
-            op:function(){
+            op: function () {
                 dialog1.showModal();
             },
-            esc:function(){
+            esc: function () {
                 dialog0.close();
                 dialog1.close();
             },
-            deletecourse:function(){
-                this.$http.post("/deleteCourse",{
-                        cno:this.deleteCno,
-                        year:this.deleteYear.substring(0,4),
-                        semester:this.deleteSemester,
-                        majorName:this.deleteMajorName,
-                        grade:this.deleteGrade
-                    },
-                    {emulateJSON:true}).then(function (value) {
-                    },
-                    function (reason) {
+            deletecourse: function () {
+                this.$http.post(
+                    "/deleteCourse", {
+                        cno: this.deleteCno,
+                        year: this.deleteYear.substring(0, 4),
+                        semester: this.deleteSemester,
+                        majorName: this.deleteMajorName,
+                        grade: this.deleteGrade
+                    }, {emulateJSON: true}).then(function (value) {
+
+                    }, function (reason) {
+
                     }
                 );
-                this.$http.post("/deleteWillCourse",{
-                    cno:this.deleteCno,
-                    year:this.deleteYear.substring(0,4),
+                this.$http.post("/deleteWillCourse", {
+                        cno: this.deleteCno,
+                        year: this.deleteYear.substring(0, 4),
                     semester:this.deleteSemester,
                     majorName:this.deleteMajorName,
                     grade:this.deleteGrade
                 },
                 {emulateJSON:true}).then(function (value) {
-
                         alert("删除成功！")
                         dialog1.close();
                     },
@@ -466,7 +467,6 @@
                         alert("添加成功")
                          dialog0.close();
                         //console.log(this.deleteCourse);
-
                     },
                     function (reason) {
                         alert("请求出错")
@@ -482,7 +482,6 @@
                         grade:this.nowCourseGrade
                     },
                     {emulateJSON:true}).then(function (value) {
-                        //console.log("222")
                         this.deleteCourse=value.body.data;
                         //console.log(this.deleteCourse);
                         /*开始操作*/
@@ -758,7 +757,6 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
-
 <!-- Icons -->
 <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
 <script>
@@ -767,6 +765,5 @@
 
 <!-- Graphs -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
-
 </body>
 </html>

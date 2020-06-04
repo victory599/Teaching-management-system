@@ -32,10 +32,6 @@
 </head>
 <body th:onload="'javascript:f('+${isChosen}+');'">
 
-
-
-
-
 <!--<div class="top">-->
     <!--<h2 class="text-black-50 text-center">题目详情页面</h2>-->
 <!--</div>-->
@@ -97,7 +93,6 @@
                     <a th:case="false" th:href="@{'/StuChooseQues?questionid='+${quesInfo.questionid}}">
                         <button class="btn btn-primary btn-sm btn-block"  type="button" >选择此论题</button>
                         <!--<div th:if="${isChosen}==true">-->
-
                         <!--</div>-->
                     </a>
                 </div>
@@ -124,7 +119,7 @@
     </div>
 </div>
 <div id="footerID" class="footer">
-    版权所有&copy; Copyright 2016-2019 计科1601班
+    <p>版权所有© 工学院 计科1602班 刘 毕业设计</p>
 </div>
 </body>
 <body>

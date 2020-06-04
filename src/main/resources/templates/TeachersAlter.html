@@ -4,12 +4,9 @@
 <head>
     <meta charset="utf-8">
     <div th:replace="common/backstageNavigator.html :: head"></div>
-
 </head>
-
 <body>
 <div th:replace="common/backstageNavigator.html :: banner"></div>
-
 <div class="container-fluid" id="TA">
     <div class="row">
         <div th:replace="common/backstageNavigator.html :: navi"></div>
@@ -23,7 +20,6 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text">工号</span>
                         </div>
-
                         <input  class="form-control mr-sm-2" type="number"  th:name="tno" v-model="tno" placeholder="工号">
                     </div>
                 </div>
@@ -102,8 +98,7 @@
 
 <script >
     var ta = new Vue({
-        el: '#TA'
-        ,
+        el: '#TA',
         data: {
             // tno: null,
             // tname: '',
@@ -138,16 +133,12 @@
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
 
-
 <!-- Icons -->
 <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
 <script>
     feather.replace()
 </script>
-
 <!-- Graphs -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
-
 </body>
-
 </html>

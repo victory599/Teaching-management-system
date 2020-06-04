@@ -39,7 +39,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>教务后台管理系统</title>
+    <title>后台管理系统</title>
 
     <script src="./js/vue.js"></script>
     <!-- Custom styles for this template -->
@@ -49,7 +49,7 @@
 </div>
 <div th:fragment="banner">
     <nav class="navbar navbar-dark sticky-top bg-primary flex-md-nowrap p-0">
-        <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">教务后台管理系统</a>
+        <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">后台管理系统</a>
         <!--input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search"-->
         <ul class="navbar-nav px-3">
             <li class="nav-item text-nowrap">
@@ -69,9 +69,7 @@
                             <span class="input-group-text">初期表现(10%)</span>
                         </div>
                         <!--<h1 th:text="${needUpdateStudent}"></h1>-->
-                        <input class="form-control mr-sm-2" th:name="earlyperformance" type="text"
-                               th:value="${Score.earlyperformance}"
-                        >
+                        <input class="form-control mr-sm-2" th:name="earlyperformance" type="text" th:value="${Score.earlyperformance}">
                     </div>
                 </div>
                 <div class="form-group col-sm-4">
@@ -79,8 +77,7 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text">中期考核(20%)</span>
                         </div>
-                        <input class="form-control mr-sm-2" th:name="midexam" type="text"
-                               th:value="${Score.midexam}">
+                        <input class="form-control mr-sm-2" th:name="midexam" type="text" th:value="${Score.midexam}">
                     </div>
                 </div>
                 <div class="form-group col-sm-4">
@@ -88,8 +85,7 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text">答辩(30%)</span>
                         </div>
-                        <input class="form-control mr-sm-2" th:name="thesisanswer" type="text"
-                               th:value="${Score.thesisanswer}">
+                        <input class="form-control mr-sm-2" th:name="thesisanswer" type="text" th:value="${Score.thesisanswer}">
                     </div>
                 </div>
                 <div class="form-group col-sm-4">
@@ -97,8 +93,7 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text">论文(30%)</span>
                         </div>
-                        <input class="form-control mr-sm-2" th:name="paper" type="text"
-                               th:value="${Score.paper}">
+                        <input class="form-control mr-sm-2" th:name="paper" type="text" th:value="${Score.paper}">
                     </div>
                 </div>
                 <div class="form-group col-sm-4">
@@ -106,8 +101,7 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text">额外加分(10%)</span>
                         </div>
-                        <input class="form-control mr-sm-2" th:name="extracredit" type="text"
-                               th:value="${Score.extracredit}">
+                        <input class="form-control mr-sm-2" th:name="extracredit" type="text" th:value="${Score.extracredit}">
                     </div>
                 </div>
                 <div class="form-group col-sm-4">

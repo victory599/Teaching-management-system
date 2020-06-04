@@ -4,12 +4,9 @@
 <head>
     <meta charset="utf-8">
     <div th:replace="common/backstageNavigator.html :: head"></div>
-
 </head>
-
 <body>
 <div th:replace="common/backstageNavigator.html :: banner"></div>
-
 <div class="container-fluid" id="TA">
     <div class="row">
         <div th:replace="common/backstageNavigator.html :: navi"></div>
@@ -23,7 +20,6 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text">工号</span>
                         </div>
-
                         <input class="form-control mr-sm-2" type="number" th:name="tno" v-model="tno" placeholder="工号">
                     </div>
                 </div>
@@ -32,8 +28,7 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text">姓名</span>
                         </div>
-                        <input class="form-control mr-sm-2" type="text" th:name="tname" v-model="tname"
-                               placeholder="姓名">
+                        <input class="form-control mr-sm-2" type="text" th:name="tname" v-model="tname" placeholder="姓名">
                     </div>
                 </div>
                 <div class="form-group col-sm-4">
@@ -49,8 +44,7 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text">手机</span>
                         </div>
-                        <input class="form-control mr-sm-2" type="text" th:name="phone" v-model="phone"
-                               placeholder="手机">
+                        <input class="form-control mr-sm-2" type="text" th:name="phone" v-model="phone" placeholder="手机">
                     </div>
                 </div>
                 <div class="form-group col-sm-4">
@@ -58,8 +52,7 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text">邮箱</span>
                         </div>
-                        <input class="form-control mr-sm-2" type="text" th:name="email" v-model="email"
-                               placeholder="邮箱">
+                        <input class="form-control mr-sm-2" type="text" th:name="email" v-model="email" placeholder="邮箱">
                     </div>
                 </div>
                 <div class="form-group col-sm-4">
@@ -67,8 +60,7 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text">学院号</span>
                         </div>
-                        <input class="form-control mr-sm-2" type="number" th:name="collegeid" v-model="collegeId"
-                               placeholder="学院号">
+                        <input class="form-control mr-sm-2" type="number" th:name="collegeid" v-model="collegeId" placeholder="学院号">
                     </div>
                 </div>
                 <div class="form-group col-sm-4">
@@ -76,8 +68,7 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text">办公室地址</span>
                         </div>
-                        <input class="form-control mr-sm-2" type="text" th:name="office" v-model="office"
-                               placeholder="办公室地址">
+                        <input class="form-control mr-sm-2" type="text" th:name="office" v-model="office" placeholder="办公室地址">
                     </div>
                 </div>
                 <div class="form-group col-sm-4">
@@ -88,7 +79,6 @@
                         <input class="form-control mr-sm-2" type="text" th:name="rank" v-model="rank" placeholder="职称">
                     </div>
                 </div>
-
                 <div class="form-group col-sm-4">
                     <button class="btn btn-outline-primary mr-sm-2" type="submit">
                         <span data-feather="user-plus"></span>
@@ -99,7 +89,6 @@
         </main>
     </div>
 </div>
-
 <script>
     var ta = new Vue({
         el: '#TA',
@@ -129,7 +118,6 @@
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
 
-
 <!-- Icons -->
 <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
 <script>
@@ -138,7 +126,5 @@
 
 <!-- Graphs -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
-
 </body>
-
 </html>
