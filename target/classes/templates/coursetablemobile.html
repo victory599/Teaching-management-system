@@ -37,7 +37,6 @@
 		.item-col{height:250px;width:12%;border: 0.5px solid #b7bec3;float:left;display: inline-block;}
 		.item-col-evening{height:150px;width:12%;border: 0.5px solid #b7bec3;float:left;display: inline-block;}
 		.each-col{position:absolute;top:77px;height:1300px;width:12%;}
-
 		.item-class{position: absolute;width: 12%;height: 400px;text-align: center;border-top: 0.3px solid #b7bec3;border-bottom: 0.3px solid #b7bec3;padding:3px;}
 		.content-class{width: 100%;display: inline-block;text-align: left;overflow: hidden;}
 		.content-row{width:100%;font-size:8px}
@@ -47,111 +46,108 @@
 <body>
 <div data-role="page" id="pageone">
 	<!-- 面板 -->
-  <div data-role="panel" id="myPanel">
-      <a href="/index" data-ajax="false" class="ui-btn ui-icon-home ui-btn-icon-left">主页</a>
-      <a href="/coursetablemobile" data-ajax="false" class="ui-btn ui-icon-lock ui-btn-icon-left">查看课表</a>
-      <a href="/selectcoursemobile" data-ajax="false" class="ui-btn ui-icon-info ui-btn-icon-left">自主选课</a>
-      <a href="/gradeinfomobile" data-ajax="false" class="ui-btn ui-icon-info ui-btn-icon-left">成绩查询</a>
-      <a href="/StuLookThroughQuesMobile" target="_self" class="ui-btn ui-icon-home ui-btn-icon-left">论题列表</a>
-      <a href="/StuChoiceMobile" target="_self" class="ui-btn ui-icon-lock ui-btn-icon-left">我的论题</a>
-      <a href="/StuScoreMobile"  target="_self" class="ui-btn ui-icon-lock ui-btn-icon-left">我的成绩</a>
-  </div>	
-  	<!-- 头部 -->
-	<div data-role="header">
-	<a href="#myPanel" class="ui-btn ui-shadow ui-corner-all ui-icon-bullets ui-btn-icon-notext"></a>
-	<h1>学生课表查询</h1>
-	</div>
-  	<!-- 主体 -->
-  <div data-role="main" class="ui-content">
-  	<label>学年:</label>
-  	<select v-model="start">
-        <option th:value="${currentSemester.start}">当前学年</option>
-        <option th:value="${semester.start}"  th:each="semester : ${semesterlist}">[[${semester.start}]] - [[${semester.end}]]</option>
-  	</select>
-  	<label>学期:</label>
-  	<select v-model="semester">
-			<option value="1">1</option>
-			<option value="2">2</option>
-			<option value="3">3</option>
-		</select>
-		<br>
-  	<div>
-  		<input type="submit" value="查询" @click="getcoursetable()">
-  	</div>
-
-  	<div class="row main">
-      <div id="table">
-		    <div class="header">
-      		<div class="jie">节次</div>
-      		<div class="weekhead">周一</div>
-      		<div class="weekhead">周二</div>
-      		<div class="weekhead">周三</div>
-      		<div class="weekhead">周四</div>
-      		<div class="weekhead">周五</div>
-      		<div class="weekhead">周六</div>
-      		<div class="weekhead">周日</div>
-		    </div>
-
-        <div class="day">
-          <div class="numset">
-            <div class="jie-item">1</div>
-            <div class="jie-item">2</div>
-            <div class="jie-item">3</div>
-            <div class="jie-item">4</div>
-            <div class="jie-item">5</div>
-          </div>
-          <div class="item-col" id="col-1">
-          </div>
-          <div class="item-col" id="col-2">
-          </div>
-          <div class="item-col" id="col-3">
-          </div>
-          <div class="item-col" id="col-4">
-          </div>
-          <div class="item-col" id="col-5">
-          </div>
-          <div class="item-col" id="col-6">
-          </div>
-          <div class="item-col" id="col-7">
-          </div>
+    <div data-role="panel" id="myPanel">
+        <a href="/index" data-ajax="false" class="ui-btn ui-icon-home ui-btn-icon-left">主页</a>
+        <a href="/coursetablemobile" data-ajax="false" class="ui-btn ui-icon-lock ui-btn-icon-left">查看课表</a>
+        <a href="/selectcoursemobile" data-ajax="false" class="ui-btn ui-icon-info ui-btn-icon-left">自主选课</a>
+        <a href="/gradeinfomobile" data-ajax="false" class="ui-btn ui-icon-info ui-btn-icon-left">成绩查询</a>
+        <a href="/StuLookThroughQuesMobile" target="_self" class="ui-btn ui-icon-home ui-btn-icon-left">论题列表</a>
+        <a href="/StuChoiceMobile" target="_self" class="ui-btn ui-icon-lock ui-btn-icon-left">我的论题</a>
+        <a href="/StuScoreMobile"  target="_self" class="ui-btn ui-icon-lock ui-btn-icon-left">我的成绩</a>
+    </div>
+    <!-- 头部 -->
+    <div data-role="header">
+        <a href="#myPanel" class="ui-btn ui-shadow ui-corner-all ui-icon-bullets ui-btn-icon-notext"></a>
+        <h1>学生课表查询</h1>
+    </div>
+    <!-- 主体 -->
+    <div data-role="main" class="ui-content">
+        <label>学年:</label>
+        <select v-model="start">
+            <option th:value="${currentSemester.start}">当前学年</option>
+            <option th:value="${semester.start}"  th:each="semester : ${semesterlist}">[[${semester.start}]] - [[${semester.end}]]</option>
+        </select>
+        <label>学期:</label>
+        <select v-model="semester">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+        </select>
+        <br>
+        <div>
+            <input type="submit" value="查询" @click="getcoursetable()">
         </div>
+        <div class="row main">
+            <div id="table">
+                <div class="header">
+                    <div class="jie">节次</div>
+                    <div class="weekhead">周一</div>
+                    <div class="weekhead">周二</div>
+                    <div class="weekhead">周三</div>
+                    <div class="weekhead">周四</div>
+                    <div class="weekhead">周五</div>
+                    <div class="weekhead">周六</div>
+                    <div class="weekhead">周日</div>
+                </div>
 
-        <div class="day">
-          <div class="numset">
-            <div class="jie-item">6</div>
-            <div class="jie-item">7</div>
-            <div class="jie-item">8</div>
-            <div class="jie-item">9</div>
-            <div class="jie-item">10</div>
-          </div>
+                <div class="day">
+                    <div class="numset">
+                        <div class="jie-item">1</div>
+                        <div class="jie-item">2</div>
+                        <div class="jie-item">3</div>
+                        <div class="jie-item">4</div>
+                        <div class="jie-item">5</div>
+                    </div>
+                    <div class="item-col" id="col-1">
+                    </div>
+                    <div class="item-col" id="col-2">
+                    </div>
+                    <div class="item-col" id="col-3">
+                    </div>
+                    <div class="item-col" id="col-4">
+                    </div>
+                    <div class="item-col" id="col-5">
+                    </div>
+                    <div class="item-col" id="col-6">
+                    </div>
+                    <div class="item-col" id="col-7">
+                    </div>
+                </div>
 
-          <div class="item-col"></div>
-          <div class="item-col"></div>
-          <div class="item-col"></div>
-          <div class="item-col"></div>
-          <div class="item-col"></div>
-          <div class="item-col"></div>
-          <div class="item-col"></div>
-        </div>
+                <div class="day">
+                    <div class="numset">
+                        <div class="jie-item">6</div>
+                        <div class="jie-item">7</div>
+                        <div class="jie-item">8</div>
+                        <div class="jie-item">9</div>
+                        <div class="jie-item">10</div>
+                    </div>
+                    <div class="item-col"></div>
+                    <div class="item-col"></div>
+                    <div class="item-col"></div>
+                    <div class="item-col"></div>
+                    <div class="item-col"></div>
+                    <div class="item-col"></div>
+                    <div class="item-col"></div>
+                </div>
 
-        <div class="evening">
-          <div class="even_numset">
-            <div class="jie-item">11</div>
-            <div class="jie-item">12</div>
-            <div class="jie-item">13</div>
-          </div>
-
-          <div class="item-col-evening"></div>
-          <div class="item-col-evening"></div>
-          <div class="item-col-evening"></div>
-          <div class="item-col-evening"></div>
-          <div class="item-col-evening"></div>
-          <div class="item-col-evening"></div>
-          <div class="item-col-evening"></div>
+                <div class="evening">
+                    <div class="even_numset">
+                        <div class="jie-item">11</div>
+                        <div class="jie-item">12</div>
+                        <div class="jie-item">13</div>
+                    </div>
+                    <div class="item-col-evening"></div>
+                    <div class="item-col-evening"></div>
+                    <div class="item-col-evening"></div>
+                    <div class="item-col-evening"></div>
+                    <div class="item-col-evening"></div>
+                    <div class="item-col-evening"></div>
+                    <div class="item-col-evening"></div>
+                </div>
+            </div>
         </div>
     </div>
-    </div>
-  </div>
 </div>
 
 </body>

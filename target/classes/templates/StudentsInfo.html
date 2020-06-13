@@ -4,15 +4,12 @@
 <head>
     <div th:replace="common/backstageNavigator.html :: head"></div>
 </head>
-
 <body>
 <div th:replace="common/backstageNavigator.html :: banner"></div>
-
 <div class="container-fluid" id="SI">
     <div class="row">
         <div th:replace="common/backstageNavigator.html :: navi"></div>
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
-
             <form class="form-inline mt-2 mt-md-0" method="post" th:action="@{/SearchStudents}">
                 <div class="input-group">
                     <div class="input-group-prepend">
@@ -78,7 +75,6 @@
                     <td>{{student.sno}}</td>
                     <td>{{student.sname}}</td>
                     <td>{{student.sex}}</td>
-
                     <td>{{student.major}}</td>
                     <td>{{student.grade}}</td>
                     <td>{{student.klass}}</td>
@@ -137,7 +133,6 @@
                     this.pagestudents = this.totalpage[this.currentpage];
                 }
             }
-
         },
         data: {
             searchStudent: {
@@ -161,7 +156,6 @@
             currentpage: 0,
             students: [[${allStudent}]]
         }
-
     })
 </script>
 
@@ -183,10 +177,7 @@
 <script>
     feather.replace()
 </script>
-
 <!-- Graphs -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
-
 </body>
-
 </html>

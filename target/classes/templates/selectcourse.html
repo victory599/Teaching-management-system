@@ -4,7 +4,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <title>学生选课系统</title>
-        <!--网站引用Vue文件 -->
+	<!--网站引用Vue文件 -->
 	<script src="js/selectcourse/vue.min.js"></script>
 	<script src="js/selectcourse/vue-resource.min.js"></script>
 
@@ -95,7 +95,7 @@
 								</li>
 							</ul>
 							<div class="tab-content">
-							<!-- 1公共选修 -->
+								<!-- 1公共选修 -->
 								<div class="tab-pane active" id="panel-first">
 									<!-- 如果存在记录 -->
 									<div class="panel-group"  id="panel-1">
@@ -114,26 +114,25 @@
 													<div style="font-weight: bold;">上课地点:{{msg.address}}</div>
 													<div style="font-weight: bold;">剩余容量:{{msg.capacity}}</div>
 													<div style="text-align: right;">
-													<button type="button" v-bind:class="'btn btn-default btn-primary '+canbeselect(msg.cno,msg.capacity,1)" @click="select_course(msg.cno,msg.capacity,1)">选课</button>
-														<button type="button" v-bind:class="'btn btn-default btn-danger '+ canbeselect(msg.cno,msg.capacity,2)" @click="cancel_course(msg.cno,msg.capacity,2)">退选</button></div>
-
+													<button type="button" v-bind:class="'btn btn-default btn-primary '+canbeselect(msg.cno,msg.capacity,1)"
+															@click="select_course(msg.cno,msg.capacity,1)">选课</button>
+													<button type="button" v-bind:class="'btn btn-default btn-danger '+ canbeselect(msg.cno,msg.capacity,2)"
+															@click="cancel_course(msg.cno,msg.capacity,2)">退选</button></div>
 												</div>
 											</div>
 										</div>
 									</div>
 								</div>						
-							<!-- 2专业选修 -->
+								<!-- 2专业选修 -->
 								<div class="tab-pane" id="panel-second">
 									<div class="tab-pane active" id="panel-second">
 										<!-- 如果存在记录 -->
 										<div class="panel-group"  id="panel-2">
-
 											<div v-if="course_selected_place.length + course_not_selected_place.length == 0" style="width: 200px;margin: auto;">
 												没有可用的选课记录
 											</div>
 											<div class="panel panel-default" v-for= "msg in msgs[0]" v-if="msg.courseType == 1" v-cloak>
 												<div class="panel-heading" v-bind:style="getstyle(msg.cno,msg.capacity,1)">
-
 													 <a class="panel-title" data-toggle="collapse" data-parent="#panel-2" v-bind:href="'#panel-element-'+msg.cno">{{msg.cno}}-{{msg.cname}}(教课老师:{{msg.tname}})-{{msg.college}} </a>
 												</div>
 												<div v-bind:id="'panel-element-'+msg.cno" class="panel-collapse collapse">
@@ -145,24 +144,22 @@
 														<div style="text-align: right;">
 														<button type="button" v-bind:class="'btn btn-default btn-primary '+canbeselect(msg.cno,msg.capacity,1)" @click="select_course(msg.cno,msg.capacity,1)">选课</button>
 														<button type="button" v-bind:class="'btn btn-default btn-danger '+ canbeselect(msg.cno,msg.capacity,2)" @click="cancel_course(msg.cno,msg.capacity,2)">退选</button></div>
-
 													</div>
 												</div>
 											</div>
 										</div>
 									</div>
 								</div>
-							<!-- 3通识课 -->
+								<!-- 3通识课 -->
 								<div class="tab-pane" id="panel-third">
 									<div class="tab-pane active" id="panel-third">
-									<!-- 如果存在记录 -->
+										<!-- 如果存在记录 -->
 										<div class="panel-group"  id="panel-3">
 											<div v-if="course_selected_place.length + course_not_selected_place.length == 0" style="width: 200px;margin: auto;">
 												没有可用的选课记录
 											</div>
 											<div class="panel panel-default" v-for= "msg in msgs[0]" v-if="msg.courseType == 2" v-cloak>
 												<div class="panel-heading" v-bind:style="getstyle(msg.cno,msg.capacity,1)">
-
 													 <a class="panel-title" data-toggle="collapse" data-parent="#panel-3" v-bind:href="'#panel-element-'+msg.cno">{{msg.cno}}-{{msg.cname}}(教课老师:{{msg.tname}})-{{msg.college}} </a>
 												</div>
 												<div v-bind:id="'panel-element-'+msg.cno" class="panel-collapse collapse">
@@ -172,10 +169,11 @@
 														<div style="font-weight: bold;">上课地点:{{msg.address}}</div>
 														<div style="font-weight: bold;">剩余容量:{{msg.capacity}}</div>
 														<div style="text-align: right;">
-
-														<button type="button" v-bind:class="'btn btn-default btn-primary '+canbeselect(msg.cno,msg.capacity,1)" @click="select_course(msg.cno,msg.capacity,1)">选课</button>
-														<button type="button" v-bind:class="'btn btn-default btn-danger '+ canbeselect(msg.cno,msg.capacity,2)" @click="cancel_course(msg.cno,msg.capacity,2)">退选</button></div>
-														</div>
+														<button type="button" v-bind:class="'btn btn-default btn-primary '+canbeselect(msg.cno,msg.capacity,1)"
+																@click="select_course(msg.cno,msg.capacity,1)">选课</button>
+														<button type="button" v-bind:class="'btn btn-default btn-danger '+ canbeselect(msg.cno,msg.capacity,2)"
+																@click="cancel_course(msg.cno,msg.capacity,2)">退选</button></div>
+													</div>
 												</div>
 											</div>
 										</div>
@@ -187,59 +185,55 @@
 				</div>
 			</div>
 		</div>
+	</div>
+	<!-- 右侧内容开始 -->
+	<div class="outer" id="left-content">
+		<div class="outer_left" id="outer_left_button">
+			<A class="glyphicon glyphicon-arrow-left btn-lg" href=""></A>
+			<A class="outer_left_xkxx" href="javascript:;">
+				<H5>选课信息</H5>
+				<span>已选 <B id="yxkts" style="margin-bottom: 6px;">{{allcourse_selected_place.length}}</B></span>
+			</A>
 		</div>
-		
-			<!-- 右侧内容开始 -->
-		<div class="outer" id="left-content">
-			<div class="outer_left" id="outer_left_button">
-				<A class="glyphicon glyphicon-arrow-left btn-lg" href=""></A>
-				<A class="outer_left_xkxx" href="javascript:;">
-					<H5>选课信息</H5>
-					<span>已选 <B id="yxkts" style="margin-bottom: 6px;">{{allcourse_selected_place.length}}</B></span>
-				</A>
-			</div>
-			<div class="outer_right" id="wrapper">
-				<div class="right_div" id="right_div" style="margin-top: 10px;">
-					<div class="outer_xkxx_list">
-						<div class="page-header">
-						    <h1>
-						        <small>已选课程</small>
-						    </h1>
-						</div>
+		<div class="outer_right" id="wrapper">
+			<div class="right_div" id="right_div" style="margin-top: 10px;">
+				<div class="outer_xkxx_list">
+					<div class="page-header">
+						<h1>
+							<small>已选课程</small>
+						</h1>
 					</div>
 				</div>
-				<!-- 键入已选课程区域 -->
-				<ul class="list-group">
-					<div v-if="allcourse_selected_place.length==0" style="text-align: center;">无选课信息</div>
-					<li class="list-group-item" v-for="place in allcourse_selected_place">
-						<div>
-							{{msgs[0][place].cno}}-{{msgs[0][place].cname}}(教课老师:{{msgs[0][place].tname}})-{{msgs[0][place].college}}
-						</div>
-						<div style="text-align: right;">
-							<button type="button" class="'btn btn-default btn-danger" @click="cancel_course(msgs[0][place].cno)">退选</button>
-						</div>
-					</li>
-				</ul>
-				<!--这里写的是已选课的列表-->
 			</div>
+			<!-- 键入已选课程区域 -->
+			<ul class="list-group">
+				<div v-if="allcourse_selected_place.length==0" style="text-align: center;">无选课信息</div>
+				<li class="list-group-item" v-for="place in allcourse_selected_place">
+					<div>
+						{{msgs[0][place].cno}}-{{msgs[0][place].cname}}(教课老师:{{msgs[0][place].tname}})-{{msgs[0][place].college}}
+					</div>
+					<div style="text-align: right;">
+						<button type="button" class="'btn btn-default btn-danger" @click="cancel_course(msgs[0][place].cno)">退选</button>
+					</div>
+				</li>
+			</ul>
+			<!--这里写的是已选课的列表-->
 		</div>
-		 <script>
-		 window.onload=function(){
+	</div>
+	 <script>
+		 window.onload = function () {
 			$("#left-content").animate({width:"40px"},1000);
 			$("#outer_left_button").click(function() {
-				if($("#left-content").css("width")	==	"40px")
-				{
-					$("#left-content").animate({width:"500px"},600);
+				if ($("#left-content").css("width") == "40px") {
+					$("#left-content").animate({width: "500px"}, 600);
 					$("#outer_left_button").addClass("glyphicon-arrow-right");
-				}
-				else
-				{
-					$("#left-content").animate({width:"40px"},600);
+				} else {
+					$("#left-content").animate({width: "40px"}, 600);
 					$("#outer_left_button").removeClass("glyphicon-arrow-right");
 				}
 			});
 		}
-		</script>
+	</script>
 </div>
 
 <script>
@@ -272,42 +266,37 @@
 					cname:"",
 					tname:"",
 					capacity:this.input_capacity
-				},
-					{emulateJSON:true}).then(function (value) {
-	                this.msgs=value.body.data;
+				}, {emulateJSON:true}).then(function (value) {
+					this.msgs=value.body.data;
 					var i,j;
-	                for(i=this.msgs[0].length - 1;i >= 0;i--){
-	                	//判断课程的类别
-		                	for(j = this.msgs[1].length - 1;j >= 0 ;j--){
-
-		                		if(this.msgs[0][i].cno == this.msgs[1][j].cno){
-		                			// 添加已选择的课表位置
-		                			this.allcourse_selected_place.push(i)
-		                			if(right_type == this.msgs[0][i].courseType){
-		                				this.course_selected_place.push(i)
-		                			}
-		                			break;
-		                		}
-		                	}
-		                	if(j == -1 && right_type == this.msgs[0][i].courseType){
-		                			//添加未选择课表位置
-	                			this.course_not_selected_place.push(i)
-	                		}
-                		}
-	                }
-			    ,function (reason) {
+					for(i=this.msgs[0].length - 1;i >= 0;i--){
+						//判断课程的类别
+						for(j = this.msgs[1].length - 1;j >= 0 ;j--){
+							if(this.msgs[0][i].cno == this.msgs[1][j].cno){
+								// 添加已选择的课表位置
+								this.allcourse_selected_place.push(i)
+								if(right_type == this.msgs[0][i].courseType){
+									this.course_selected_place.push(i)
+								}
+								break;
+							}
+						}
+						if(j == -1 && right_type == this.msgs[0][i].courseType){
+							//添加未选择课表位置
+							this.course_not_selected_place.push(i)
+						}
+					}
+				}, function (reason) {
 	                alert("请求出错");
 	            })
 				//this.$forceUpdate(); //强制刷新，解决页面不会重新渲染的问题
-			},
-			getstyle:function(coursenumber,capacity,flag){
+			}, getstyle:function(coursenumber,capacity,flag){
 				if(this.canbeselect(coursenumber,capacity,flag) == 'disabled'){
 					return "background-color: rgb(184, 255, 148);"
 				}else{
 					return ''
 				}
-			},
-			search:function(){
+			}, search:function(){
 				right_type = this.course_type
 				this.course_selected_place=[]
 				this.course_not_selected_place=[]
@@ -318,34 +307,31 @@
 					cname:this.input_search,
 					tname:"",
 					capacity:this.input_capacity
-				},
-					{emulateJSON:true}).then(function (value) {
-	                this.msgs=value.body.data;
+				}, {emulateJSON:true}).then(function (value) {
+					this.msgs=value.body.data;
 					var i,j;
-	                for(i=this.msgs[0].length - 1;i >= 0;i--){
-	                	//判断课程的类别
-		                	for(j = this.msgs[1].length - 1;j >= 0 ;j--){
-
-		                		if(this.msgs[0][i].cno == this.msgs[1][j].cno){
-		                			// 添加已选择的课表位置
-		                			this.allcourse_selected_place.push(i)
-		                			if(right_type == this.msgs[0][i].courseType){
-		                				this.course_selected_place.push(i)
-		                			}
-		                			break;
-		                		}
-		                	}
-		                	if(j == -1 && right_type == this.msgs[0][i].courseType){
-		                			//添加未选择课表位置
-	                			this.course_not_selected_place.push(i)
-	                		}
-                		}
-	                }
+					for(i=this.msgs[0].length - 1;i >= 0;i--){
+						//判断课程的类别
+						for(j = this.msgs[1].length - 1;j >= 0 ;j--){
+							if(this.msgs[0][i].cno == this.msgs[1][j].cno){
+								// 添加已选择的课表位置
+								this.allcourse_selected_place.push(i)
+								if(right_type == this.msgs[0][i].courseType){
+									this.course_selected_place.push(i)
+								}
+								break;
+							}
+						}
+						if(j == -1 && right_type == this.msgs[0][i].courseType){
+								//添加未选择课表位置
+							this.course_not_selected_place.push(i)
+						}
+					}
+				}
 			    ,function (reason) {
 	                alert("请求出错");
 	            })
-			},
-			canbeselect:function(coursenumber,capacity,flag){
+			}, canbeselect:function(coursenumber,capacity,flag){
 				if(flag == 1){
 					//选课选项
 					if(capacity != 0){
@@ -359,17 +345,14 @@
 				}
 				else{
 					//退选选项
-					
 					for(var temp = 0;temp < this.course_selected_place.length;temp++){
 						if(coursenumber == this.msgs[0][this.course_selected_place[temp]].cno){
 							return "";
 						}
 					}
-					
 					return 'disabled';
 				}
-			},
-			select_course:function(coursenumber,capacity,flag){
+			}, select_course:function(coursenumber,capacity,flag){
 				if(this.canbeselect(coursenumber,capacity,flag) == "disabled"){
 					return ;
 				}
@@ -396,9 +379,7 @@
 				},function(reason){
 					alert("选课失败!请联系管理员！");
 				})
-				
-			},
-			cancel_course:function(coursenumber,capacity,flag){
+			}, cancel_course:function(coursenumber,capacity,flag){
 				if(this.canbeselect(coursenumber,capacity,flag) == "disabled"){
 					return ;
 				}
@@ -419,14 +400,11 @@
 				},function(reason){
 					alert("退课失败!");
 				})
-				
 			}
-		},
-		mounted:function(){
+		}, mounted:function(){
 			this.getdata(0);
 		}
 	});
 </script>
 </BODY>
-
 </HTML>

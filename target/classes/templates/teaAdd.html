@@ -54,10 +54,9 @@
                     alert("输入有误！")
                 } else {
                     this.$http.post("/**********", {
-                            tname: this.tname, office: this.office, title: this.title, sex: this.sex,
-                            college: this.college, email: this.email, phone: this.phone
-                        },
-                        {emulateJSON: true}).then(function (value) {
+                        tname: this.tname, office: this.office, title: this.title, sex: this.sex,
+                        college: this.college, email: this.email, phone: this.phone
+                    }, {emulateJSON: true}).then(function (value) {
                         if (value.body.code == 1) {
                             alert("增加成功！");
                         } else {
