@@ -39,10 +39,6 @@ public class SemesterControllerPage {
     @PostMapping("/CreateNewSemester")
     public String createNewSemester(@RequestParam("semesterid") Integer semesterId, @RequestParam("semester") String semester,
                                     @RequestParam("start") Date start, @RequestParam("end") Date end, HttpServletRequest request) {
-        System.out.println(semesterId);
-        System.out.println(semester);
-        System.out.println(start);
-        System.out.println(end);
         if (checkPower(request) == false) {
             return "error";
         }

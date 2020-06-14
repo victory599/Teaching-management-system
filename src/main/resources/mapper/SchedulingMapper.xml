@@ -127,11 +127,11 @@
     <select id="getCourseInfoByTno" parameterType="int" resultType="com.liu.vo.TeaCourseView">
     select semesterid,teaInfo.cno,capacity,address,course_time,cname from
     (
-    (select semesterid,cno,capacity,address,course_time from scheduling
-        where tno = #{tno} and status='1') as teaInfo
-    inner join
-    (select cno,cname from course) as courseInfo
-    on teaInfo.cno=courseInfo.cno
+        (select semesterid,cno,capacity,address,course_time from scheduling
+            where tno = #{tno} and status='1') as teaInfo
+        inner join
+        (select cno,cname from course) as courseInfo
+        on teaInfo.cno=courseInfo.cno
     )
     </select>
 </mapper>

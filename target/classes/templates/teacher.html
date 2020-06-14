@@ -115,7 +115,7 @@
                             <tbody>
                             <tr th:each="CourseInfo: ${session.CourseTable}">
                                 <td th:text="${CourseInfo.semesterid}"></td>
-                                <td th:text="${CourseInfo.courseName}"></td>
+                                <td th:text="${CourseInfo.cname}"></td>
                                 <td th:text="${CourseInfo.address}"></td>
                                 <td th:text="${CourseInfo.courseTime}"></td>
                             </tr>
@@ -160,7 +160,7 @@
                                         </a>
                                     </li>
                                     <li class="col-md-4 col-sm-4 col-xs-4">
-                                        <a href="http://www.hnit.edu.cn/cwc/" target="_blank">
+                                        <a href="http://www.hnit.edu.cn/jwc/" target="_blank">
                                             <img src="images/ico_but83.png"/>
                                             <h5>教务处</h5>
                                         </a>

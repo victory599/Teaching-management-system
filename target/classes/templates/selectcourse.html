@@ -112,7 +112,7 @@
 													<div>{{msg.description}}</div>
 													<div style="font-weight: bold;">上课时间:{{msg.startWeek}} ~ {{msg.endWeek}}周，每周星期{{msg.week}} {{msg.startStep}} ~ {{msg.endStep}}节</div>
 													<div style="font-weight: bold;">上课地点:{{msg.address}}</div>
-													<div style="font-weight: bold;">剩余容量:{{msg.capacity}}</div>
+													<div style="font-weight: bold;">可选人数:{{msg.capacity}}</div>
 													<div style="text-align: right;">
 													<button type="button" v-bind:class="'btn btn-default btn-primary '+canbeselect(msg.cno,msg.capacity,1)"
 															@click="select_course(msg.cno,msg.capacity,1)">选课</button>
@@ -140,7 +140,7 @@
 														<div>{{msg.description}}</div>
 														<div style="font-weight: bold;">上课时间:{{msg.startWeek}} ~ {{msg.endWeek}}周，每周星期{{msg.week}} {{msg.startStep}} ~ {{msg.endStep}}节</div>
 														<div style="font-weight: bold;">上课地点:{{msg.address}}</div>
-														<div style="font-weight: bold;">剩余容量:{{msg.capacity}}</div>
+														<div style="font-weight: bold;">可选人数:{{msg.capacity}}</div>
 														<div style="text-align: right;">
 														<button type="button" v-bind:class="'btn btn-default btn-primary '+canbeselect(msg.cno,msg.capacity,1)" @click="select_course(msg.cno,msg.capacity,1)">选课</button>
 														<button type="button" v-bind:class="'btn btn-default btn-danger '+ canbeselect(msg.cno,msg.capacity,2)" @click="cancel_course(msg.cno,msg.capacity,2)">退选</button></div>
@@ -167,7 +167,7 @@
 														<div>{{msg.description}}</div>
 														<div style="font-weight: bold;">上课时间:{{msg.startWeek}} ~ {{msg.endWeek}}周，每周星期{{msg.week}} {{msg.startStep}} ~ {{msg.endStep}}节</div>
 														<div style="font-weight: bold;">上课地点:{{msg.address}}</div>
-														<div style="font-weight: bold;">剩余容量:{{msg.capacity}}</div>
+														<div style="font-weight: bold;">可选人数:{{msg.capacity}}</div>
 														<div style="text-align: right;">
 														<button type="button" v-bind:class="'btn btn-default btn-primary '+canbeselect(msg.cno,msg.capacity,1)"
 																@click="select_course(msg.cno,msg.capacity,1)">选课</button>

@@ -58,6 +58,12 @@ public class PowerControllerPage {
         return "changePassword";
     }
 
+    /**
+     * 批量导入学生信息
+     * @param request
+     * @param multfile
+     * @return
+     */
     @ResponseBody
     @RequestMapping("/ExcelAfterInsert")
     public String excelAfterInsert(HttpServletRequest request, @RequestParam("file") MultipartFile multfile) {
@@ -76,7 +82,8 @@ public class PowerControllerPage {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        // 转存文件
+
+        // 转存文件，存入用户临时文件夹
         try {
             multfile.transferTo(file);
         } catch (IOException e) {
@@ -84,8 +91,8 @@ public class PowerControllerPage {
         }
 
         /* 测试数据 */
-        tmpSemesterId = 1;
-        tmpcno = 1;
+        /*tmpSemesterId = 1;
+        tmpcno = 1;*/
 
         if (fileName == null && "".equals(fileName)) {
             return "文件名不能为空！";
@@ -109,6 +116,12 @@ public class PowerControllerPage {
         }
     }
 
+    /**
+     * 批量导入教师信息
+     * @param request
+     * @param multipartFile
+     * @return
+     */
     @ResponseBody
     @RequestMapping("/ExcelAfterInsertForT")
     public String excelAfterInsertForT(HttpServletRequest request, @RequestParam("file") MultipartFile multipartFile) {
@@ -126,7 +139,8 @@ public class PowerControllerPage {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        // 转存文件
+
+        // 转存文件，存入用户临时文件夹
         try {
             multipartFile.transferTo(file);
         } catch (IOException e) {

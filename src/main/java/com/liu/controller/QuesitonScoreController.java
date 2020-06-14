@@ -95,9 +95,9 @@ public class QuesitonScoreController {
             isJudged = -1;
         } else if ((boolean) hasChangedScoreObject == true) {
             if ((boolean) judgeObject == true) {
-                isJudged = 1;       //打分成功
+                isJudged = 1;       // 打分成功
             } else {
-                isJudged = 0;       //已经打过分
+                isJudged = 0;       // 已经打过分
             }
             session.removeAttribute("hasChangedScore");
         }
@@ -131,7 +131,7 @@ public class QuesitonScoreController {
         // 判断是否打过分
         QuestionScore questionScoreCheck = questionScoreService.getQuestionScoreBySno(sno);
         if (questionScoreCheck != null) {
-            session.setAttribute("judge", false);//表示已经打过分
+            session.setAttribute("judge", false);   // 表示已经打过分
             session.setAttribute("hasChangedScore", true);
             return "redirect:/TeaAddScore";
         }
@@ -146,7 +146,7 @@ public class QuesitonScoreController {
         questionScore.setExtracredit(extracredit);
         questionScoreService.addQuestionScore(questionScore);
         session.setAttribute("hasChangedScore", true);
-        session.setAttribute("judge", true);//表示打分成功
+        session.setAttribute("judge", true);    //表示打分成功
         return "redirect:/TeaAddScore";
     }
 

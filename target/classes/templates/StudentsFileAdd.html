@@ -28,6 +28,7 @@
         <div th:replace="common/backstageNavigator.html :: navi"></div>
         <div role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
             <h2>学生导入</h2>
+            <p>&ensp;Excel格式：全文格式为文本，表格第一行为标题，不作导入 </p>
             <div id="app1">
                 <input type="file" @change="getFile($event)"/>
                 <button @click="upload">上传</button>
@@ -65,47 +66,35 @@
         },
         methods: {
             upload: function () {
-                //console.log(this.upath);
                 var zipFormData = new FormData();
-                zipFormData.append('file', this.upath);//file要和@RequestParam("file")MultipartFile file对应好
+                zipFormData.append('file', this.upath);         // file要和@RequestParam("file")MultipartFile file对应好
                 var config = {headers: {'Content-Type': 'multipart/form-data'}};
                 var s = this.start;
                 this.uping = 1;
                 this.$http.post('/ExcelAfterInsert', zipFormData, config, s).then(function (response) {
-                    // console.log(response);
-                    // console.log(response.data);
                     console.log(response.bodyText);
                     alert(response.bodyText)
-                    // var resultobj = response.data;
                     this.result = response.data
                     this.uping = 0;
-                    // this.result = resultobj.msg;
                 });
             },
             getFile: function (even) {
                 this.upath = event.target.files[0];
             },
             uploadt: function () {
-                // alert(2)
-                //console.log(this.upath);
                 var zipFormData = new FormData();
-                zipFormData.append('file', this.upath2);//file要和@RequestParam("file")MultipartFile file对应好
+                zipFormData.append('file', this.upath2);        // file要和@RequestParam("file")MultipartFile file对应好
                 var config = {headers: {'Content-Type': 'multipart/form-data'}};
                 var s = this.start2;
                 this.uping2 = 1;
                 this.$http.post('/ExcelAfterInsertForT', zipFormData, config, s).then(function (response) {
-                    // console.log(response);
-                    // console.log(response.data);
                     console.log(response.bodyText);
                     alert(response.bodyText)
-                    // var resultobj = response.data;
                     this.result2 = response.data
                     this.uping2 = 0;
-                    // this.result = resultobj.msg;
                 });
             },
             getFile2: function (even) {
-                // alert(2)
                 this.upath2 = event.target.files[0];
             },
         }

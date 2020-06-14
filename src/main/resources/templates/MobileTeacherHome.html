@@ -86,7 +86,7 @@
             <br>
             <p th:if="${#lists.isEmpty(courseTable)}" style="margin-left: 20px;">当前没有选课信息</p>
             <a class="list-group-item" th:each="course : ${courseTable}">
-                   <div>[[${course.courseName}]]</div>
+                   <div>[[${course.cname}]]</div>
                     <div>
                         [[${course.courseTime}]]--[[${course.address}]]
                     </div>

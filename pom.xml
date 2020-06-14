@@ -39,6 +39,13 @@
             <version>3.17</version>
         </dependency>
 
+        <!-- devtools热部署 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <optional>true</optional>
+            <scope>runtime</scope>
+        </dependency>
         <!-- springboot监控依赖 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -84,13 +91,6 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- reactor测试 -->
-        <dependency>
-            <groupId>io.projectreactor</groupId>
-            <artifactId>reactor-test</artifactId>
-            <scope>test</scope>
-        </dependency>
-
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
@@ -101,6 +101,13 @@
             <groupId>com.alibaba</groupId>
             <artifactId>druid</artifactId>
             <version>1.1.10</version>
+        </dependency>
+
+        <!-- reactor测试 -->
+        <dependency>
+            <groupId>io.projectreactor</groupId>
+            <artifactId>reactor-test</artifactId>
+            <scope>test</scope>
         </dependency>
 
         <!-- JUnit5扩展的编程模型和扩展模型，用来编写测试用例 -->

@@ -84,13 +84,15 @@ public class LoginController {
                 int tno = user.getAccount();
                 List<TeaCourseView> teaCourseViews = schedulingService.getCourseInfoByTno(tno);
                 session.setAttribute("CourseTable",teaCourseViews);
-
                 model.put("courseTable", teaCourseViews);   //课表
+
                 Teacher teacher = teacherService.getTeacherByTno(tno);
                 model.put("teainfo", teacher);
+
                 int cid = teacher.getCollegeId();
                 String colname = collegeService.getColnameById(cid);
                 model.put("colname", colname);
+
                 if (platform.equals("mobile"))
                     return "MobileTeacherHome";
                 return "teacher";

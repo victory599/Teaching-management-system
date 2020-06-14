@@ -7,6 +7,7 @@ import com.liu.vo.UserAddView;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.DataFormatter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -84,15 +85,16 @@ public class TeacherService {
         float coid = 0;
         for (int i = 1; i <= lastRowNum; i++) {
             HSSFRow row = sheet.getRow(i);
+            DataFormatter df = new DataFormatter();
             teacher = new Teacher();
-            teacher.setTname(row.getCell(1).toString());
-            teacher.setSex(row.getCell(2).toString());
-            teacher.setCollegeId(Integer.parseInt(row.getCell(5).toString()));
-            teacher.setEmail(row.getCell(4).toString());
-            teacher.setPhone(row.getCell(3).toString());
-            teacher.setOffice(row.getCell(6).toString());
-            teacher.setTno(Integer.parseInt((row.getCell(0).toString())));
-            teacher.setRank(row.getCell(7).toString());
+            teacher.setTname(df.formatCellValue(row.getCell(1)));
+            teacher.setSex(df.formatCellValue(row.getCell(2)));
+            teacher.setCollegeId(Integer.parseInt(df.formatCellValue(row.getCell(5))));
+            teacher.setEmail(df.formatCellValue(row.getCell(4)));
+            teacher.setPhone(df.formatCellValue(row.getCell(3)));
+            teacher.setOffice(df.formatCellValue(row.getCell(6)));
+            teacher.setTno(Integer.parseInt((df.formatCellValue(row.getCell(0)))));
+            teacher.setRank(df.formatCellValue(row.getCell(7)));
 
             teachers.add(teacher);
         }

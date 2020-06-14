@@ -88,27 +88,30 @@ public class GradeManagementService {
         GradeManagementView p = new GradeManagementView();
         p.setSemesterId(semesterId);
         p.setCno(cno);
-        // tmpend
+
+        // 获取成绩的百分比
         String percent = gradeManagementDao.getCoursePercent(p);
         String[] tmp = percent.split(",");
         int p1 = Integer.parseInt(tmp[0]);
         int p2 = Integer.parseInt(tmp[1]);
         int p3 = Integer.parseInt(tmp[2]);
+
+        // 解析Excel表中数据，计算最终成绩，并存入数据库
         try {
             List<Object[]> list = excelUtil.importExcel(file);
             for (int i = 0; i < list.size(); i++) {
-                SelectCourse parma = new SelectCourse();
+                SelectCourse selectCourse = new SelectCourse();
                 String[] detail = ((String) list.get(i)[1]).split(",");
                 int g1 = Integer.parseInt(detail[0]);
                 int g2 = Integer.parseInt(detail[1]);
                 int g3 = Integer.parseInt(detail[2]);
                 int ts = (p1 * g1 + p2 * g2 + p3 * g3) / 100;
-                parma.setCno(cno);
-                parma.setSemesterId(semesterId);
-                parma.setSno((Integer) list.get(i)[0]);
-                parma.setDetail((String) list.get(i)[1]);//先规定三栏成绩写在一格里，逗号分隔
-                parma.setTotalScore(ts);
-                gradeManagementDao.setStudentGradeById(parma); //执行insert
+                selectCourse.setCno(cno);
+                selectCourse.setSemesterId(semesterId);
+                selectCourse.setSno((Integer) list.get(i)[0]);
+                selectCourse.setDetail((String) list.get(i)[1]);        //先规定三栏成绩写在一格里，逗号分隔
+                selectCourse.setTotalScore(ts);
+                gradeManagementDao.setStudentGradeById(selectCourse);   //执行insert
             }
             System.out.println("导入数据结束。。。。。。");
             return true;

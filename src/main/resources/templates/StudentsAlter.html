@@ -11,16 +11,16 @@
         <div th:replace="common/backstageNavigator.html :: navi"></div>
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
-                <h1 class="h2">添加学生</h1>
+                <h1 class="h2">修改学生信息</h1>
             </div>
-            <form th:action="@{/DoStudentsAdd}" th:type="buct.software.domain.Student" method="post">
+            <form th:action="@{/DoStudentsAdd}" th:type="com.liu.entity.Student" method="post">
                 <div class="form-group col-sm-4">
                     <div class="input-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text">学号</span>
                         </div>
                         <!--<h1 th:text="${needUpdateStudent}"></h1>-->
-                        <input class="form-control mr-sm-2" th:name="sno" type="number" v-model="sno" placeholder="学号">
+                        <input class="form-control mr-sm-2" th:name="sno" type="number" v-model="sno" placeholder="学号" readonly>
                     </div>
                 </div>
                 <div class="form-group col-sm-4">

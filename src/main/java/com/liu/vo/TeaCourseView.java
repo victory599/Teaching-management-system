@@ -8,17 +8,17 @@ import org.apache.ibatis.type.Alias;
 public class TeaCourseView{
     private int semesterid;
     private int cno;
-    private String courseName;
+    private String cname;
     private int capacity;
     private String address;
     private String courseTime;
 
     public TeaCourseView(){}
 
-    public TeaCourseView(int semesterid,int cno,int capacity,String address,String courseTime,String courseName){
+    public TeaCourseView(int semesterid,int cno,int capacity,String address,String courseTime,String cname){
         this.semesterid = semesterid;
         this.cno = cno;
-        this.courseName = courseName;
+        this.cname = cname;
         this.capacity = capacity;
         this.address = address;
         this.courseTime = courseTime;
